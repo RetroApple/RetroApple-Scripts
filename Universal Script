@@ -1,0 +1,940 @@
+-- Made by Retroapple
+
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local TopBar = Instance.new("TextLabel")
+local UIPadding = Instance.new("UIPadding")
+local SideWindow = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local LocalPlayer = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local UICorner_22 = Instance.new("UICorner")
+local ESPSwitch = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Option4 = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local Option1 = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local Option5 = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local UICorner_21 = Instance.new("UICorner")
+local UIPadding_2 = Instance.new("UIPadding")
+local UserWindow = Instance.new("Frame")
+local PlayerName = Instance.new("TextLabel")
+local PlayerImage = Instance.new("ImageLabel")
+local UICorner_6 = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local CloseButton = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local MinimizeButton = Instance.new("TextButton")
+local UICorner_8 = Instance.new("UICorner")
+local frameFolder = Instance.new("Folder")
+local LocalPlayerFrame = Instance.new("Frame")
+local FlyBorder = Instance.new("TextLabel")
+local UICorner_9 = Instance.new("UICorner")
+local FlyText = Instance.new("TextLabel")
+local UICorner_10 = Instance.new("UICorner")
+local UIPadding_3 = Instance.new("UIPadding")
+local KeyBind = Instance.new("TextBox")
+local NoClipBorder = Instance.new("TextLabel")
+local UICorner_11 = Instance.new("UICorner")
+local NoClipText = Instance.new("TextLabel")
+local UICorner_12 = Instance.new("UICorner")
+local UIPadding_4 = Instance.new("UIPadding")
+local KeyBind_2 = Instance.new("TextBox")
+local WalkSpeedBorder = Instance.new("TextLabel")
+local JumpPowerBorder = Instance.new("TextLabel")
+local UICorner_13 = Instance.new("UICorner")
+local WalkSpeedText = Instance.new("TextLabel")
+local JumpPowerText = Instance.new("TextLabel")
+local UICorner_14 = Instance.new("UICorner")
+local SpeedInput = Instance.new("TextBox")
+local JumpInput = Instance.new("TextBox")
+local UICorner_15 = Instance.new("UICorner")
+local UICorner_23 = Instance.new("UICorner")
+local ESPFrame = Instance.new("Frame")
+local ESPBorder = Instance.new("TextLabel")
+local UICorner_16 = Instance.new("UICorner")
+local ESPText = Instance.new("TextLabel")
+local UICorner_17 = Instance.new("UICorner")
+local UIPadding_5 = Instance.new("UIPadding")
+local ESPButton = Instance.new("TextButton")
+local TracerBorder = Instance.new("TextLabel")
+local UICorner_18 = Instance.new("UICorner")
+local TracerText = Instance.new("TextLabel")
+local UICorner_19 = Instance.new("UICorner")
+local UIPadding_6 = Instance.new("UIPadding")
+local TextButton = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
+Main.Position = UDim2.new(0.275814891, 0, 0.374562413, 0)
+Main.Size = UDim2.new(0, 798, 0, 398)
+Main.Active = true
+Main.Draggable = true
+
+TopBar.Name = "TopBar"
+TopBar.Parent = Main
+TopBar.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+TopBar.BorderSizePixel = 0
+TopBar.Position = UDim2.new(-0.000180581454, 0, 0, 0)
+TopBar.Size = UDim2.new(0, 798, 0, 20)
+TopBar.Font = Enum.Font.SourceSansBold
+TopBar.Text = "RetroApple UI"
+TopBar.TextColor3 = Color3.fromRGB(88, 88, 88)
+TopBar.TextSize = 14.000
+TopBar.TextWrapped = true
+
+UIPadding.Parent = TopBar
+UIPadding.PaddingLeft = UDim.new(-0.879999995, 0)
+
+SideWindow.Name = "SideWindow"
+SideWindow.Parent = Main
+SideWindow.BackgroundColor3 = Color3.fromRGB(36, 37, 47)
+SideWindow.BorderSizePixel = 0
+SideWindow.Position = UDim2.new(-0.00144931721, 0, 0.0502512567, 0)
+SideWindow.Size = UDim2.new(0, 180, 0, 378)
+
+UIListLayout.Parent = SideWindow
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 10)
+
+------------------------------- Local Player Button ----------------------------
+
+LocalPlayer.Name = "LocalPlayer"
+LocalPlayer.Parent = SideWindow
+LocalPlayer.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+LocalPlayer.Position = UDim2.new(0.0462427735, 0, 0.0461538434, 0)
+LocalPlayer.Size = UDim2.new(0, 149, 0, 42)
+LocalPlayer.Font = Enum.Font.SourceSansSemibold
+LocalPlayer.Text = "Local Player"
+LocalPlayer.TextColor3 = Color3.fromRGB(229, 229, 229)
+LocalPlayer.TextSize = 15.000
+LocalPlayer.TextWrapped = true
+
+UICorner.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner.Parent = LocalPlayer
+
+local frameList = {ESPFrame, LocalPlayerFrame}
+
+LocalPlayer.MouseButton1Click:Connect(function()
+	for i, v in pairs(frameList) do
+		if v:IsA("Frame") then
+			v.Visible = false
+		end
+		LocalPlayerFrame.Visible = true
+	end
+end)
+
+--------------------------------- ESP Switch ----------------------
+
+ESPSwitch.Name = "ESPSwitch"
+ESPSwitch.Parent = SideWindow
+ESPSwitch.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+ESPSwitch.Position = UDim2.new(0.0462427735, 0, 0.0461538434, 0)
+ESPSwitch.Size = UDim2.new(0, 149, 0, 42)
+ESPSwitch.Font = Enum.Font.SourceSansSemibold
+ESPSwitch.Text = "ESP"
+ESPSwitch.TextColor3 = Color3.fromRGB(229, 229, 229)
+ESPSwitch.TextSize = 15.000
+ESPSwitch.TextWrapped = true
+
+UICorner_2.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_2.Parent = ESPSwitch
+
+local frameList = {ESPFrame, LocalPlayerFrame}
+
+ESPSwitch.MouseButton1Click:Connect(function()
+	for i, v in pairs(frameList) do
+		if v:IsA("Frame") then
+			v.Visible = false
+		end
+		ESPFrame.Visible = true
+	end
+end)
+
+-------------------------------------------------------------------
+
+Option4.Name = "Option4"
+Option4.Parent = SideWindow
+Option4.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+Option4.Position = UDim2.new(0.0462427735, 0, 0.0461538434, 0)
+Option4.Size = UDim2.new(0, 149, 0, 42)
+Option4.Font = Enum.Font.SourceSansSemibold
+Option4.Text = "Option 4"
+Option4.TextColor3 = Color3.fromRGB(229, 229, 229)
+Option4.TextSize = 15.000
+Option4.TextWrapped = true
+
+UICorner_3.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_3.Parent = Option4
+
+Option1.Name = "Option1"
+Option1.Parent = SideWindow
+Option1.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+Option1.Position = UDim2.new(0.0462427735, 0, 0.0461538434, 0)
+Option1.Size = UDim2.new(0, 149, 0, 42)
+Option1.Font = Enum.Font.SourceSansSemibold
+Option1.Text = "Option 1"
+Option1.TextColor3 = Color3.fromRGB(229, 229, 229)
+Option1.TextSize = 15.000
+Option1.TextWrapped = true
+
+UICorner_4.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_4.Parent = Option1
+
+Option5.Name = "Option5"
+Option5.Parent = SideWindow
+Option5.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+Option5.Position = UDim2.new(0.0462427735, 0, 0.0461538434, 0)
+Option5.Size = UDim2.new(0, 149, 0, 42)
+Option5.Font = Enum.Font.SourceSansSemibold
+Option5.Text = "Option 5"
+Option5.TextColor3 = Color3.fromRGB(229, 229, 229)
+Option5.TextSize = 15.000
+Option5.TextWrapped = true
+
+UICorner_5.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_5.Parent = Option5
+
+UIPadding_2.Parent = SideWindow
+UIPadding_2.PaddingTop = UDim.new(0, 10)
+
+UserWindow.Name = "UserWindow"
+UserWindow.Parent = Main
+UserWindow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UserWindow.BackgroundTransparency = 1.000
+UserWindow.BorderSizePixel = 0
+UserWindow.Position = UDim2.new(-0.00144931721, 0, -0.0577889457, 350)
+UserWindow.Size = UDim2.new(0, 179, 0, 73)
+
+PlayerName.Name = "PlayerName"
+PlayerName.Parent = UserWindow
+PlayerName.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+PlayerName.BackgroundTransparency = 1.000
+PlayerName.BorderSizePixel = 0
+PlayerName.Position = UDim2.new(0.418578088, 0, 0, 0)
+PlayerName.Size = UDim2.new(0, 104, 0, 71)
+PlayerName.ZIndex = 3
+PlayerName.Font = Enum.Font.SourceSansBold
+PlayerName.TextColor3 = Color3.fromRGB(240, 240, 240)
+PlayerName.TextSize = 14.000
+
+PlayerImage.Name = "PlayerImage"
+PlayerImage.Parent = UserWindow
+PlayerImage.BackgroundColor3 = Color3.fromRGB(52, 54, 70)
+PlayerImage.BorderSizePixel = 0
+PlayerImage.Size = UDim2.new(0, 74, 0, 71)
+PlayerImage.ZIndex = 2
+PlayerImage.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+
+UICorner_6.CornerRadius = UDim.new(1, 8)
+UICorner_6.Parent = PlayerImage
+
+TextLabel.Parent = UserWindow
+TextLabel.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 178, 0, 71)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 14.000
+TextLabel.TextTransparency = 1.000
+
+--------------------------- Close Button -------------------------------
+
+CloseButton.Name = "CloseButton"
+CloseButton.Parent = Main
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 48, 21)
+CloseButton.BorderSizePixel = 0
+CloseButton.Position = UDim2.new(0.973913014, 0, 0, 0)
+CloseButton.Size = UDim2.new(0, 18, 0, 18)
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(245, 245, 245)
+CloseButton.TextScaled = true
+CloseButton.TextSize = 20.000
+CloseButton.TextStrokeColor3 = Color3.fromRGB(245, 245, 245)
+CloseButton.TextWrapped = true
+
+UICorner_7.CornerRadius = UDim.new(0.300000012, 2)
+UICorner_7.Parent = CloseButton
+
+CloseButton.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()
+end)
+
+----------------------- Minimize Button ---------------------------
+
+MinimizeButton.Name = "MinimizeButton"
+MinimizeButton.Parent = Main
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(68, 67, 86)
+MinimizeButton.BorderSizePixel = 0
+MinimizeButton.Position = UDim2.new(0.939130366, 0, 0, 0)
+MinimizeButton.Size = UDim2.new(0, 18, 0, 18)
+MinimizeButton.Font = Enum.Font.SourceSansBold
+MinimizeButton.Text = "-"
+MinimizeButton.TextColor3 = Color3.fromRGB(245, 245, 245)
+MinimizeButton.TextScaled = true
+MinimizeButton.TextSize = 20.000
+MinimizeButton.TextStrokeColor3 = Color3.fromRGB(245, 245, 245)
+MinimizeButton.TextWrapped = true
+
+
+UICorner_8.CornerRadius = UDim.new(0.300000012, 2)
+UICorner_8.Parent = MinimizeButton
+
+MinimizeButton.MouseButton1Click:Connect(function()
+	if ScreenGui.Visible == false then
+		ScreenGui.Visible = true
+	else
+		ScreenGui.Visible = false
+	end
+end)
+
+---- Keybind Minimize ----
+
+--local UIS = game:GetService("UserInputService")
+
+--UIS.InputBegan:Connect(function(keycode)
+--	if keycode.KeyCode == Enum.KeyCode.RightAlt then
+--		if Main.Visible == false then
+--			Main.Visible = true
+--		else
+--			Main.Visible = false
+--		end
+--	end
+--end)
+
+-------------------------------------------------------------------
+
+frameFolder.Name = "frameFolder"
+frameFolder.Parent = Main
+
+LocalPlayerFrame.Name = "LocalPlayerFrame"
+LocalPlayerFrame.Parent = frameFolder
+LocalPlayerFrame.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
+LocalPlayerFrame.BorderSizePixel = 0
+LocalPlayerFrame.Position = UDim2.new(0, 178, 0, 20)
+LocalPlayerFrame.Size = UDim2.new(0, 616, 0, 378)
+
+FlyBorder.Name = "FlyBorder"
+FlyBorder.Parent = LocalPlayerFrame
+FlyBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+FlyBorder.Position = UDim2.new(0.0299999993, 0, 0, 10)
+FlyBorder.Size = UDim2.new(0, 128, 0, 57)
+FlyBorder.Font = Enum.Font.SourceSans
+FlyBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
+FlyBorder.TextSize = 14.000
+
+UICorner_9.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_9.Parent = FlyBorder
+
+FlyText.Name = "FlyText"
+FlyText.Parent = FlyBorder
+FlyText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+FlyText.Size = UDim2.new(0, 121, 0, 50)
+FlyText.Font = Enum.Font.SourceSansBold
+FlyText.Text = "Fly"
+FlyText.TextColor3 = Color3.fromRGB(243, 243, 243)
+FlyText.TextSize = 24.000
+FlyText.TextXAlignment = Enum.TextXAlignment.Left
+
+UICorner_10.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_10.Parent = FlyText
+
+UIPadding_3.Parent = FlyText
+UIPadding_3.PaddingLeft = UDim.new(0.100000001, 0)
+UIPadding_3.PaddingTop = UDim.new(0, -1)
+
+KeyBind.Name = "KeyBind"
+KeyBind.Parent = FlyBorder
+KeyBind.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KeyBind.BackgroundTransparency = 1.000
+KeyBind.BorderSizePixel = 0
+KeyBind.Position = UDim2.new(0.616875172, 0, 0, 0)
+KeyBind.Size = UDim2.new(0, 42, 0, 50)
+KeyBind.Font = Enum.Font.SourceSansSemibold
+KeyBind.Text = "Y"
+KeyBind.TextColor3 = Color3.fromRGB(111, 140, 220)
+KeyBind.TextSize = 24.000
+KeyBind.TextWrapped = true
+
+NoClipBorder.Name = "NoClipBorder"
+NoClipBorder.Parent = LocalPlayerFrame
+NoClipBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+NoClipBorder.Position = UDim2.new(0.0299999993, 0, 0, 80)
+NoClipBorder.Size = UDim2.new(0, 128, 0, 57)
+NoClipBorder.Font = Enum.Font.SourceSans
+NoClipBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
+NoClipBorder.TextSize = 14.000
+
+UICorner_11.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_11.Parent = NoClipBorder
+
+NoClipText.Name = "NoClipText"
+NoClipText.Parent = NoClipBorder
+NoClipText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+NoClipText.Size = UDim2.new(0, 121, 0, 50)
+NoClipText.Font = Enum.Font.SourceSansBold
+NoClipText.Text = "NoClip"
+NoClipText.TextColor3 = Color3.fromRGB(243, 243, 243)
+NoClipText.TextSize = 24.000
+NoClipText.TextXAlignment = Enum.TextXAlignment.Left
+
+UICorner_12.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_12.Parent = NoClipText
+
+UIPadding_4.Parent = NoClipText
+UIPadding_4.PaddingLeft = UDim.new(0.100000001, 0)
+UIPadding_4.PaddingTop = UDim.new(0, -1)
+
+KeyBind_2.Name = "KeyBind"
+KeyBind_2.Parent = NoClipBorder
+KeyBind_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KeyBind_2.BackgroundTransparency = 1.000
+KeyBind_2.BorderSizePixel = 0
+KeyBind_2.Position = UDim2.new(0.616875172, 0, 0, 0)
+KeyBind_2.Size = UDim2.new(0, 42, 0, 50)
+KeyBind_2.Font = Enum.Font.SourceSansSemibold
+KeyBind_2.Text = "B"
+KeyBind_2.TextColor3 = Color3.fromRGB(111, 140, 220)
+KeyBind_2.TextSize = 24.000
+KeyBind_2.TextWrapped = true
+
+WalkSpeedBorder.Name = "WalkSpeedBorder"
+WalkSpeedBorder.Parent = LocalPlayerFrame
+WalkSpeedBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+WalkSpeedBorder.Position = UDim2.new(0, 400, 0, 10)
+WalkSpeedBorder.Size = UDim2.new(0, 200, 0, 57)
+WalkSpeedBorder.Font = Enum.Font.SourceSans
+WalkSpeedBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
+WalkSpeedBorder.TextSize = 14.000
+
+UICorner_13.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_13.Parent = WalkSpeedBorder
+
+WalkSpeedText.Name = "WalkSpeedText"
+WalkSpeedText.Parent = WalkSpeedBorder
+WalkSpeedText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+WalkSpeedText.Size = UDim2.new(0, 200, 0, 50)
+WalkSpeedText.Font = Enum.Font.SourceSansBold
+WalkSpeedText.Text = "WalkSpeed"
+WalkSpeedText.TextColor3 = Color3.fromRGB(243, 243, 243)
+WalkSpeedText.TextSize = 24.000
+
+UICorner_14.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_14.Parent = WalkSpeedText
+
+SpeedInput.Name = "SpeedInput"
+SpeedInput.Parent = WalkSpeedBorder
+SpeedInput.BackgroundColor3 = Color3.fromRGB(77, 79, 102)
+SpeedInput.BorderSizePixel = 0
+SpeedInput.Position = UDim2.new(0, 0, 0, 65)
+SpeedInput.Size = UDim2.new(0, 200, 0, 26)
+SpeedInput.Font = Enum.Font.SourceSansBold
+SpeedInput.PlaceholderColor3 = Color3.fromRGB(97, 97, 97)
+SpeedInput.PlaceholderText = "Enter Walkspeed here!"
+SpeedInput.Text = ""
+SpeedInput.TextColor3 = Color3.fromRGB(111, 140, 220)
+SpeedInput.TextSize = 24.000
+
+UICorner_15.Parent = SpeedInput
+
+-----------------------------------------------------------------------------
+
+JumpPowerBorder.Name = "JumpPowerBorder"
+JumpPowerBorder.Parent = LocalPlayerFrame
+JumpPowerBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+JumpPowerBorder.Position = UDim2.new(0, 400, 0, 125)
+JumpPowerBorder.Size = UDim2.new(0, 200, 0, 57)
+JumpPowerBorder.Font = Enum.Font.SourceSans
+JumpPowerBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
+JumpPowerBorder.TextSize = 14.000
+
+UICorner_21.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_21.Parent = JumpPowerBorder
+
+JumpPowerText.Name = "JumpPowerText"
+JumpPowerText.Parent = JumpPowerBorder
+JumpPowerText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+JumpPowerText.Size = UDim2.new(0, 200, 0, 50)
+JumpPowerText.Font = Enum.Font.SourceSansBold
+JumpPowerText.Text = "JumpPower"
+JumpPowerText.TextColor3 = Color3.fromRGB(243, 243, 243)
+JumpPowerText.TextSize = 24.000
+
+UICorner_22.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_22.Parent = JumpPowerText
+
+JumpInput.Name = "JumpInput"
+JumpInput.Parent = JumpPowerBorder
+JumpInput.BackgroundColor3 = Color3.fromRGB(77, 79, 102)
+JumpInput.BorderSizePixel = 0
+JumpInput.Position = UDim2.new(0, 0, 0, 65)
+JumpInput.Size = UDim2.new(0, 200, 0, 26)
+JumpInput.Font = Enum.Font.SourceSansBold
+JumpInput.PlaceholderColor3 = Color3.fromRGB(97, 97, 97)
+JumpInput.PlaceholderText = "Enter JumpPower here!"
+JumpInput.Text = ""
+JumpInput.TextColor3 = Color3.fromRGB(111, 140, 220)
+JumpInput.TextSize = 23.000
+
+UICorner_23.Parent = JumpInput
+
+--------------------------------- Functions ---------------------------------
+
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Character = LocalPlayer.Character
+
+local OldIndex;
+
+OldIndex	= hookmetamethod(game, "__index", newcclosure(function(Self, B,...)
+      if not checkcaller() and Self == Humanoid then
+        if B == "WalkSpeed" then
+					return 16
+        elseif B == "JumpHeight" then
+        	return 7.2
+        end
+        return OldIndex(Self,B,...)
+      end
+    return OldIndex(Self,B,...)
+end))
+
+SpeedInput.FocusLost:Connect(function(enter)
+	if enter then
+				if Character then
+					_G.NewWalkSpeed = tonumber(SpeedInput.Text)
+					local Humanoid = Character.Humanoid
+					Humanoid.Changed:Connect(function()
+							Humanoid.WalkSpeed = _G.NewWalkSpeed
+					end)	
+					Humanoid.WalkSpeed = _G.NewWalkSpeed
+				end
+
+				LocalPlayer.CharacterAdded:Connect(function(char)
+						Character = char
+						repeat wait() until char:FindFirstChild("Humanoid")
+						local Humanoid = char.Humanoid
+						Humanoid.Changed:Connect(function()
+							Humanoid.WalkSpeed = _G.NewWalkSpeed
+						end)
+						Humanoid.WalkSpeed = _G.NewWalkSpeed
+				end)
+		end
+end)
+
+JumpInput.FocusLost:Connect(function(enter)
+	if enter then
+				_G.NewJumpHeight = tonumber(JumpInput.Text)
+				if Character then
+					local Humanoid = Character.Humanoid
+					Humanoid.Changed:Connect(function()
+							Humanoid.JumpHeight = _G.NewJumpHeight
+					end)	
+					Humanoid.JumpHeight = _G.NewJumpHeight
+				end
+
+				LocalPlayer.CharacterAdded:Connect(function(char)
+						Character = char
+						repeat wait() until char:FindFirstChild("Humanoid")
+						local Humanoid = char.Humanoid
+						Humanoid.Changed:Connect(function()
+							Humanoid.JumpHeight = _G.NewJumpHeight
+						end)
+						Humanoid.JumpHeight = _G.NewJumpHeight
+				end)
+
+				print("What Roblox Sees: ".. Character.Humanoid.JumpHeight .." Actual JumpHeight: ".. _G.NewJumpHeight)
+		end
+end)
+
+
+
+------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------
+
+ESPFrame.Name = "ESPFrame"
+ESPFrame.Parent = frameFolder
+ESPFrame.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
+ESPFrame.BorderSizePixel = 0
+ESPFrame.Position = UDim2.new(0, 178, 0, 20)
+ESPFrame.Size = UDim2.new(0, 616, 0, 378)
+ESPFrame.Visible = false
+
+ESPBorder.Name = "ESPBorder"
+ESPBorder.Parent = ESPFrame
+ESPBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+ESPBorder.Position = UDim2.new(0.0299999993, 0, 0, 10)
+ESPBorder.Size = UDim2.new(0, 128, 0, 57)
+ESPBorder.Font = Enum.Font.SourceSans
+ESPBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
+ESPBorder.TextSize = 14.000
+
+UICorner_16.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_16.Parent = ESPBorder
+
+ESPText.Name = "ESPText"
+ESPText.Parent = ESPBorder
+ESPText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+ESPText.Size = UDim2.new(0, 121, 0, 50)
+ESPText.Font = Enum.Font.SourceSansBold
+ESPText.Text = "ESP"
+ESPText.TextColor3 = Color3.fromRGB(243, 243, 243)
+ESPText.TextSize = 24.000
+ESPText.TextXAlignment = Enum.TextXAlignment.Left
+
+UICorner_17.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_17.Parent = ESPText
+
+UIPadding_5.Parent = ESPText
+UIPadding_5.PaddingLeft = UDim.new(0.100000001, 0)
+UIPadding_5.PaddingTop = UDim.new(0, -1)
+
+------------------------ ESPButton ----------------------------
+
+ESPButton.Name = "ESPButton"
+ESPButton.Parent = ESPBorder
+ESPButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESPButton.BackgroundTransparency = 1.000
+ESPButton.BorderSizePixel = 0
+ESPButton.Position = UDim2.new(0.5625, 0, 0, 0)
+ESPButton.Size = UDim2.new(0, 43, 0, 50)
+ESPButton.Font = Enum.Font.SourceSansBold
+ESPButton.Text = "OFF"
+ESPButton.TextColor3 = Color3.fromRGB(206, 41, 8)
+ESPButton.TextSize = 24.000
+
+local espSettings = {
+	textsize = 20,
+	color = 255, 255, 255
+}
+
+_G.chams = false
+local Players = game:GetService("Players")
+-- local billboardESPGUI = Instance.new("BillboardGui")
+-- local ESPText = Instance.new("TextLabel", billboardESPGUI)
+
+ESPButton.MouseButton1Click:Connect(function()
+	if _G.chams == false then
+		_G.chams = true
+		ESPButton.Text = "ON"
+		ESPButton.TextColor3 = Color3.fromHex("47ce0c")
+
+		function CreateGui(name,parent,face) -- Creating the _G.chams
+			local SurfaceGui = Instance.new("SurfaceGui",parent)
+			SurfaceGui.Parent = parent
+			SurfaceGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+			SurfaceGui.Face = Enum.NormalId[face]
+			SurfaceGui.LightInfluence = 0
+			SurfaceGui.ResetOnSpawn = false
+			SurfaceGui.Name = name
+			SurfaceGui.AlwaysOnTop = true
+			local Frame = Instance.new("Frame",SurfaceGui)
+			Frame.BackgroundColor3 = Color3.fromRGB(85, 170, 255) -- Color for the _G.chams
+			Frame.Size = UDim2.new(1,0,1,0)
+		end
+		
+		local billboardESPGUI = Instance.new("BillboardGui")
+		local ESPText = Instance.new("TextLabel", billboardESPGUI)
+		
+		
+		billboardESPGUI.Name = "RetroESP"
+		billboardESPGUI.ResetOnSpawn = false
+		billboardESPGUI.AlwaysOnTop = true
+		billboardESPGUI.LightInfluence = 0
+		billboardESPGUI.Size = UDim2.new(1, 0, 1.75, 0)
+		ESPText.BackgroundTransparency = 1
+		ESPText.Text = ""
+		ESPText.Size = UDim2.new(1, 0, 1, 0)
+		ESPText.BorderSizePixel = 4
+		ESPText.BorderColor3 = Color3.new(espSettings.color)
+		ESPText.BorderSizePixel = 0
+		ESPText.Font = "SourceSansBold"
+		ESPText.TextSize = espSettings.textsize
+		ESPText.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+
+		   while _G.chams == true do
+		     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+		         if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("RetroESP")==nil then
+		             ESPText.Text = "{"..v.Name.."}"
+		             billboardESPGUI:Clone().Parent = v.Character.Head
+		       end
+			end
+			wait(0.25)
+		   end
+		
+	else 
+		_G.chams = false
+		ESPButton.Text = "OFF"
+		ESPButton.TextColor3 = Color3.fromHex("ce2908")
+		print("OFF")
+
+		while _G.chams == false do
+			for i, v in pairs (Players:GetPlayers()) do
+				for i, v in pairs (v.Character:GetDescendants()) do
+					if v:IsA("SurfaceGui") or v.Name == "RetroESP" then
+						v:Destroy()
+					end
+				end
+			end
+			wait(0.25)
+		end
+		
+	end -- IF STATEMENT "END"
+	
+	while _G.chams == true do
+		print("DPES THIS OWRK???")
+		for i,v in pairs (Players:GetPlayers()) do --- gets all the players in the game and loops through them
+			if v ~= Players.LocalPlayer and v.Character ~= nil and v.Character:FindFirstChild("Head") and _G.chams and v.Character.Head:FindFirstChild("cham") == nil then --- Checks to check if the player is appropiate to make a cham
+				for i,v in pairs (v.Character:GetChildren()) do -- looping through every child in the character of the player
+					if v:IsA("MeshPart") or v.Name == "Head" or v:IsA("Part") then -- checking if the child is a body part
+						CreateGui("cham",v,"Back")
+						CreateGui("cham",v,"Front")
+						CreateGui("cham",v,"Top")
+						CreateGui("cham",v,"Bottom")
+						CreateGui("cham",v,"Right")
+						CreateGui("cham",v,"Left")
+					end
+				end
+			end
+		end
+		wait(0.25) 
+	end
+end)
+
+
+
+-- billboardESPGUI.Name = "RetroESP"
+-- billboardESPGUI.ResetOnSpawn = false
+-- billboardESPGUI.AlwaysOnTop = true
+-- billboardESPGUI.LightInfluence = 0
+-- billboardESPGUI.Size = UDim2.new(5, 0, 1.75, 0)
+-- ESPText.BackgroundTransparency = 1
+-- ESPText.Text = ""
+-- ESPText.Size = UDim2.new(1, 0, 1, 0)
+-- ESPText.BorderSizePixel = 4
+-- ESPText.BorderColor3 = Color3.new(espSettings.color)
+-- ESPText.BorderSizePixel = 0
+-- ESPText.Font = "SourceSansBold"
+-- ESPText.TextSize = espSettings.textsize
+-- ESPText.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+
+--   game:GetService("RunService").RenderStepped:Connect(function() 
+--     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+--         if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("RetroESP")==nil and v.TeamColor ~= game:GetService("Players").LocalPlayer.TeamColor then
+--             ESPText.Text = "{"..v.Name.."}"
+--             billboardESPGUI:Clone().Parent = v.Character.Head
+--       end
+--     end
+--   end)
+
+
+----------------------------------------------------------------------
+
+TracerBorder.Name = "TracerBorder"
+TracerBorder.Parent = ESPFrame
+TracerBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+TracerBorder.Position = UDim2.new(0.0299999993, 0, 0, 80)
+TracerBorder.Size = UDim2.new(0, 128, 0, 57)
+TracerBorder.Font = Enum.Font.SourceSans
+TracerBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
+TracerBorder.TextSize = 14.000
+
+UICorner_18.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_18.Parent = TracerBorder
+
+TracerText.Name = "TracerText"
+TracerText.Parent = TracerBorder
+TracerText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+TracerText.Size = UDim2.new(0, 121, 0, 50)
+TracerText.Font = Enum.Font.SourceSansBold
+TracerText.Text = "Tracer"
+TracerText.TextColor3 = Color3.fromRGB(243, 243, 243)
+TracerText.TextSize = 24.000
+TracerText.TextXAlignment = Enum.TextXAlignment.Left
+
+UICorner_19.CornerRadius = UDim.new(0.0199999996, 8)
+UICorner_19.Parent = TracerText
+
+UIPadding_6.Parent = TracerText
+UIPadding_6.PaddingLeft = UDim.new(0.100000001, 0)
+UIPadding_6.PaddingTop = UDim.new(0, -1)
+
+TextButton.Parent = TracerBorder
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.5625, 0, 0, 0)
+TextButton.Size = UDim2.new(0, 43, 0, 50)
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.Text = "OFF"
+TextButton.TextColor3 = Color3.fromRGB(206, 41, 8)
+TextButton.TextSize = 24.000
+
+-- Scripts:
+
+local function KXHAU_fake_script() -- LocalPlayer.tabSwitch 
+	local script = Instance.new('LocalScript', LocalPlayer)
+
+	--LOCAL PLAYER TAB SWITCH
+
+	----local shortCut = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui').ScreenGui.Main.frameFolder
+	--local frameList = {shortCut.ESP, shortCut.LocalPlayer}
+
+	--script.Parent.MouseButton1Click:Connect(function()
+	--	for i, v in pairs(frameList) do
+	--		if v:IsA("Frame") then
+	--			v.Visible = false
+	--		end
+	--		shortCut.LocalPlayer.Visible = true
+	--	end
+	--end)
+
+
+end
+coroutine.wrap(KXHAU_fake_script)()
+local function EFUSUZ_fake_script() -- ESPSwitch.tabSwitch 
+	local script = Instance.new('LocalScript', ESPSwitch)
+
+	-- ESP TAB SWITCH
+
+	--local shortCut = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui').ScreenGui.Main.frameFolder
+	--local frameList = {shortCut.ESP, shortCut.LocalPlayer}
+
+	--script.Parent.MouseButton1Click:Connect(function()
+	--	for i, v in pairs(frameList) do
+	--		if v:IsA("Frame") then
+	--			v.Visible = false
+	--		end
+	--		shortCut.ESP.Visible = true
+	--	end
+	--end)
+
+
+end
+coroutine.wrap(EFUSUZ_fake_script)()
+local function WMHT_fake_script() -- PlayerName.Username 
+	local script = Instance.new('LocalScript', PlayerName)
+
+	local player = game.Players.LocalPlayer
+
+	if player then
+		script.Parent.Text = ""..player.Name..""
+	end
+end
+coroutine.wrap(WMHT_fake_script)()
+local function QXKVC_fake_script() -- PlayerImage.LocalScript 
+	local script = Instance.new('LocalScript', PlayerImage)
+
+	local frame = script.Parent.Parent
+	local player = game.Players.LocalPlayer
+	local userId = player.UserId
+	local thumType = Enum.ThumbnailType.HeadShot
+	local thumSize = Enum.ThumbnailSize.Size180x180
+	local content = game.Players:GetUserThumbnailAsync(userId, thumType, thumSize)
+
+	frame.PlayerImage.Image = content
+	frame.PlayerName.Text = player.Name
+end
+coroutine.wrap(QXKVC_fake_script)()
+local function OTXXLD_fake_script() -- CloseButton.CloseUI 
+	local script = Instance.new('LocalScript', CloseButton)
+
+	local ScreenGui = script.Parent.Parent.Parent
+
+	script.Parent.MouseButton1Click:Connect(function()
+		ScreenGui:Destroy()
+	end)
+end
+coroutine.wrap(OTXXLD_fake_script)()
+local function PEXMNOP_fake_script() -- MinimizeButton.MinimizeUI 
+	local script = Instance.new('LocalScript', MinimizeButton)
+
+	local mainFrame = script.Parent.Parent
+	local open = false
+
+	script.Parent.MouseButton1Click:Connect(function()
+		if mainFrame.Visible == false then
+			mainFrame.Visible = true
+		else
+			mainFrame.Visible = false
+		end
+	end)
+end
+coroutine.wrap(PEXMNOP_fake_script)()
+local function QWFGQFJ_fake_script() -- Main.KeybindMinimize 
+	local script = Instance.new('LocalScript', Main)
+
+	local mainFrame = script.Parent
+	local open = false
+	local UIS = game:GetService("UserInputService")
+
+	UIS.InputBegan:Connect(function(keycode)
+		if keycode.KeyCode == Enum.KeyCode.RightAlt then
+			if mainFrame.Visible == false then
+				mainFrame.Visible = true
+			else
+				mainFrame.Visible = false
+			end
+		end
+	end)
+
+end
+coroutine.wrap(QWFGQFJ_fake_script)()
+local function JTQKL_fake_script() -- ESPButton.LocalScript 
+	-- local script = Instance.new('LocalScript', ESPButton)
+
+	-- local button = script.Parent
+	-- local enabled = false
+
+	-- button.MouseButton1Click:Connect(function()
+	-- 	if enabled == false then
+	-- 		enabled = true
+	-- 		button.Text = "ON"
+	-- 		button.TextColor3 = Color3.fromHex("47ce0c")
+	-- 		--button.TextColor = Color3.new(71, 206, 12)
+	-- 	else
+	-- 		enabled = false
+	-- 		button.Text = "OFF"
+	-- 		button.TextColor3 = Color3.fromHex("ce2908")
+	-- 		--button.TextColor3 = Color3.new(206, 41, 8)
+	-- 	end
+	-- end)
+
+
+end
+coroutine.wrap(JTQKL_fake_script)()
+local function IVBFHLG_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	local button = script.Parent
+	local enabled = false
+
+	button.MouseButton1Click:Connect(function()
+		if enabled == false then
+			enabled = true
+			button.Text = "ON"
+			button.TextColor3 = Color3.fromHex("47ce0c")
+			--button.TextColor = Color3.new(71, 206, 12)
+		else
+			enabled = false
+			button.Text = "OFF"
+			button.TextColor3 = Color3.fromHex("ce2908")
+			--button.TextColor3 = Color3.new(206, 41, 8)
+		end
+	end)
+
+
+end
+coroutine.wrap(IVBFHLG_fake_script)()
