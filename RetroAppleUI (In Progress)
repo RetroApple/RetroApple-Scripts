@@ -323,7 +323,7 @@ function RetroAppleLib:tab()
 
     function tabFunctions:Bind(text, placetext, location, callback)
 
-      local UIPadding = Instance.new("UIPadding")
+      local UIPadding = Instance.new("+")
       local UICorner = Instance.new("UICorner")
       local UICorner2 = Instance.new("UICorner")
       local textBox = Instance.new("TextBox")
@@ -375,7 +375,7 @@ function RetroAppleLib:tab()
 
       for i, v in pairs(WinContainer:GetChildren()) do
         if i == tonumber(location) then
-          textBoxShadow.Parent = v.TextBoxContainer
+          textBoxShadow.Parent = v.TextKeyContainer
         end
       end
 
