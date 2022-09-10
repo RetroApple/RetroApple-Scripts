@@ -1,1 +1,1 @@
-# RetroApple-Exploit-Scripts
+# RetroApple-Scripts
