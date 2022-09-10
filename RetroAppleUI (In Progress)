@@ -1,9 +1,17 @@
-local GuiService = game:GetService("GuiService")
-local UserInputService = game:GetService("UserInputService")
+local RetroAppleLib = {}
+local UIS = game:GetService("UserInputService")
+local localPlayer = game:GetService("Players").LocalPlayer
+local Mouse = localPlayer:GetMouse()
+local WinContainer = Instance.new("Frame")
+local TabContainer = Instance.new("ScrollingFrame")
 
-UIS = game:GetService("UserInputService")
+local RetroAppleGUI = Instance.new("ScreenGui")
+RetroAppleGUI.Name = "RetroAppleGUI"
+RetroAppleGUI.Parent = game.CoreGui
+RetroAppleGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local function MakeDraggable(topbarobject, object)
+
+function MakeDraggable(topbarobject, object)
 	local Dragging = nil
 	local DragInput = nil
 	local DragStart = nil
@@ -59,13 +67,7 @@ local function MakeDraggable(topbarobject, object)
 	)
 end
 
-
-
-
-local library = {}
-
-function library:CreateWindow()
-  local RetroAppleGUI = Instance.new("ScreenGui")
+function RetroAppleLib:tab()
   local MainFrame = Instance.new("Frame")
   local TopBar = Instance.new("TextLabel")
   local CloseButton = Instance.new("TextButton")
@@ -76,7 +78,7 @@ function library:CreateWindow()
   local UICorner_PlayerImage = Instance.new("UICorner")
   local UICorner_CloseButton = Instance.new("UICorner")
   local UICorner_MinimizeButton = Instance.new("UICorner")
-  local TextLabel = Instance.new("TextLabel")
+  local textBoxShadow = Instance.new("TextLabel")
   local TabFrame = Instance.new("ScrollingFrame")
   local UIListLayout = Instance.new("UIListLayout")
   local UIPadding_TopBar = Instance.new("UIPadding")
@@ -84,31 +86,29 @@ function library:CreateWindow()
   local UIListLayout_TabContainer = Instance.new("UIListLayout")
   local UIPadding_TabContainer = Instance.new("UIPadding")
 
-  _G.WinContainer = Instance.new("Frame")
-  _G.TabContainer = Instance.new("ScrollingFrame")
-  _G.WinContainer.Parent = MainFrame
-  _G.TabContainer.Parent = MainFrame
-  _G.WinContainer.Name = "WinContainer"
-  _G.TabContainer.Name = "TabContainer"
+  WinContainer.Parent = MainFrame
+  TabContainer.Parent = MainFrame
+  WinContainer.Name = "WinContainer"
+  TabContainer.Name = "TabContainer"
 
-  _G.TabContainer.Parent = MainFrame
-  _G.TabContainer.Active = true
-  _G.TabContainer.BackgroundColor3 = Color3.fromRGB(36, 37, 47)
-  _G.TabContainer.BorderSizePixel = 0
-  _G.TabContainer.Position = UDim2.new(-0.00225313287, 0, 0.0500000007, 0)
-  _G.TabContainer.Size = UDim2.new(0, 177, 0, 307)
-  _G.TabContainer.CanvasSize = UDim2.new(1, 5, 2, 0)
-  _G.TabContainer.ScrollBarThickness = 0
+  TabContainer.Parent = MainFrame
+  TabContainer.Active = true
+  TabContainer.BackgroundColor3 = Color3.fromRGB(36, 37, 47)
+  TabContainer.BorderSizePixel = 0
+  TabContainer.Position = UDim2.new(-0.00225313287, 0, 0.0500000007, 0)
+  TabContainer.Size = UDim2.new(0, 177, 0, 307)
+  TabContainer.CanvasSize = UDim2.new(1, 5, 2, 0)
+  TabContainer.ScrollBarThickness = 0
 
-  UIListLayout_TabContainer.Parent = _G.TabContainer
+  UIListLayout_TabContainer.Parent = TabContainer
   UIListLayout_TabContainer.SortOrder = Enum.SortOrder.LayoutOrder
   UIListLayout_TabContainer.Padding = UDim.new(0, 10)
 
-  UIPadding_TabContainer.Parent = _G.TabContainer
+  UIPadding_TabContainer.Parent = TabContainer
   UIPadding_TabContainer.PaddingLeft = UDim.new(0, 14)
   UIPadding_TabContainer.PaddingTop = UDim.new(0, 10)
 
-  -- _G.TabContainer.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+  -- local TabContainer.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 
   RetroAppleGUI.Parent = game.CoreGui
   RetroAppleGUI.Name = "RetroAppleGUI"
@@ -168,14 +168,14 @@ function library:CreateWindow()
   UICorner_PlayerImage.CornerRadius = UDim.new(1, 8)
   UICorner_PlayerImage.Parent = PlayerImage
 
-  TextLabel.Parent = UserWindow
-  TextLabel.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
-  TextLabel.BorderSizePixel = 0
-  TextLabel.Size = UDim2.new(0, 178, 0, 71)
-  TextLabel.Font = Enum.Font.SourceSans
-  TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-  TextLabel.TextSize = 14.000
-  TextLabel.TextTransparency = 1.000
+  textBoxShadow.Parent = UserWindow
+  textBoxShadow.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+  textBoxShadow.BorderSizePixel = 0
+  textBoxShadow.Size = UDim2.new(0, 178, 0, 71)
+  textBoxShadow.Font = Enum.Font.SourceSans
+  textBoxShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+  textBoxShadow.TextSize = 14.000
+  textBoxShadow.TextTransparency = 1.000
 
   CloseButton.Name = "CloseButton"
   CloseButton.Parent = MainFrame
@@ -244,427 +244,141 @@ function library:CreateWindow()
 	local content = game.Players:GetUserThumbnailAsync(userId, thumType, thumSize)
 	
 	UserWindow.PlayerImage.Image = content
-	UserWindow.PlayerName.Text = player.Name
-
-  local sideWin = {}
-
-  function sideWin:CreateTab(text, name)
-
-    _G.tab = Instance.new("TextButton")
-    local UICorner_tab = Instance.new("UICorner")
-
-    _G.tab.Name = tostring(name)
-    _G.tab.Parent = _G.TabContainer
-    _G.tab.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
-    _G.tab.Size = UDim2.new(0, 149, 0, 42)
-    _G.tab.Font = Enum.Font.SourceSansSemibold
-    _G.tab.Text = text
-    _G.tab.TextColor3 = Color3.fromRGB(229, 229, 229)
-    _G.tab.TextSize = 15.000
-    _G.tab.TextWrapped = true
-    _G.tab.ZIndex = 2
-
-    UICorner_tab.CornerRadius = UDim.new(0.0199999996, 8)
-    UICorner_tab.Parent = _G.tab
-
-    -- Windows -------------------------------------------
-
-    local window = Instance.new("Frame")
-    local UIPadding_window = Instance.new("UIPadding")
-    local UIListLayout = Instance.new("UIListLayout")
-    local UIPadding = Instance.new("UIPadding")
-    _G.TextKeyContainer = Instance.new("Frame")
-
-    -- window.Name = tostring(name)
-    -- window.Parent = _G.WinContainer
-    -- window.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
-    -- window.BackgroundTransparency = 1.000
-    -- window.BorderSizePixel = 0
-    -- window.Position = UDim2.new(0, 178, 0, 20)
-    -- window.Size = UDim2.new(0, 306, 0, 378)
-
-    -- UIPadding_window.Parent = _G.window
-    -- UIPadding_window.PaddingLeft = UDim.new(0, 8)
-    -- UIPadding_window.PaddingTop = UDim.new(0, 8)
-
-    _G.TextKeyContainer.Name = tostring(name)
-    _G.TextKeyContainer.Parent = _G.WinContainer
-    _G.TextKeyContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
-    _G.TextKeyContainer.BorderSizePixel = 0
-    _G.TextKeyContainer.ClipsDescendants = true
-    _G.TextKeyContainer.Position = UDim2.new(0,-3,0,0)
-    _G.TextKeyContainer.Size = UDim2.new(0, 308, 0, 378)
-
-    UIListLayout.Parent = _G.TextKeyContainer
-    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    UIListLayout.Padding = UDim.new(0, 15)
-
-    UIPadding.Parent = _G.TextKeyContainer
-    UIPadding.PaddingLeft = UDim.new(0, 50)
-    UIPadding.PaddingTop = UDim.new(0, 10)
-
-    for i, v in pairs(_G.TabContainer:GetChildren()) do
-      print(_G.TabContainer)
-      if v.ClassName == "TextButton" then
-          v.MouseButton1Click:Connect(function()
-              for i, v2 in pairs(_G.WinContainer:GetChildren()) do
-                  if v2.Name ~= v.Name then
-                    v2.Visible = false
-                      print("Off")
-                  else
-                    v2.Visible = true
-                      print("On")
-                  end
-              end
-          end)
-      end
-    end
-  end
-
-
-  return sideWin
+	UserWindow.PlayerName.Text = player.Name 
 end
 
-local btn = {}
+local tabHolder = {}
 
-  function btn:CreateButton(text, parent)
+function tabHolder:TabBtns(text)
+
+  local tabBtns = Instance.new("TextButton")
+  local UICorner_tab = Instance.new("UICorner")
+
+  tabBtns.Name = tostring(text)
+  tabBtns.Parent = TabContainer
+  tabBtns.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+  tabBtns.Size = UDim2.new(0, 149, 0, 42)
+  tabBtns.Font = Enum.Font.SourceSansSemibold
+  tabBtns.Text = text
+  tabBtns.TextColor3 = Color3.fromRGB(229, 229, 229)
+  tabBtns.TextSize = 15.000
+  tabBtns.TextWrapped = true
+  tabBtns.ZIndex = 2
+
+  UICorner_tab.CornerRadius = UDim.new(0.0199999996, 8)
+  UICorner_tab.Parent = tabBtns
+
+  -- Tabs ------------------------------------------------------------
+
+  local tab = Instance.new("Frame")
+
+  tab.Name = tostring(text)
+  tab.Parent = WinContainer
+  tab.ClipsDescendants = false
+
+  local UIListLayout = Instance.new("UIListLayout")
+  local UIPadding = Instance.new("UIPadding")
+  local TextKeyContainer = Instance.new("Frame") 
+  
+  TextKeyContainer.Name = "TextKeyContainer"
+  TextKeyContainer.Parent =  tab
+  TextKeyContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
+  TextKeyContainer.BorderSizePixel = 0
+  TextKeyContainer.ClipsDescendants = true
+  TextKeyContainer.Position = UDim2.new(0,175,0,20)
+  TextKeyContainer.Size = UDim2.new(0, 308, 0, 378)
+  TextKeyContainer.ZIndex = 1
+
+  UIListLayout.Parent =  TextKeyContainer
+  UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout.Padding = UDim.new(0, 15)
+
+  UIPadding.Parent =  TextKeyContainer
+  UIPadding.PaddingLeft = UDim.new(0, 50)
+  UIPadding.PaddingTop = UDim.new(0, 10)
+
+  local UIListLayout2 = Instance.new("UIListLayout")
+  local UIPadding2 = Instance.new("UIPadding")
+  local TextBoxContainer = Instance.new("Frame") 
+
+  TextBoxContainer.Parent =  tab
+  TextBoxContainer.Name = "TextBoxContainer"
+  TextBoxContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
+  TextBoxContainer.BorderSizePixel = 0
+  TextBoxContainer.ClipsDescendants = true
+  TextBoxContainer.Position = UDim2.new(0,490.5,0,20)
+  TextBoxContainer.Size = UDim2.new(0, 308, 0, 378)
+  TextBoxContainer.ZIndex = 1
+
+  UIListLayout2.Parent =  TextBoxContainer
+  UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
+  UIListLayout2.Padding = UDim.new(0, 50)
+
+  UIPadding2.Parent =  TextBoxContainer
+  UIPadding2.PaddingLeft = UDim.new(0, 50)
+  UIPadding2.PaddingTop = UDim.new(0, 10)
+
+  local tabFunctions = {}
+
+  function tabFunctions:Bind(text, placetext, callback)
     local UIPadding = Instance.new("UIPadding")
     local UICorner = Instance.new("UICorner")
     local UICorner2 = Instance.new("UICorner")
-    _G.tl = Instance.new("TextLabel")
-    local tl2 = Instance.new("TextLabel")
-    local tb = Instance.new("TextBox")
+    local textBox = Instance.new("TextBox")
+    local textBoxShadow = Instance.new("TextLabel")
+    local textBoxTitle = Instance.new("TextLabel")
 
-    -- tl.ZIndex = 2
-    -- tl2.ZIndex = 2
-    -- tb.ZIndex = 2
+    textBox.Parent =  textBoxShadow
+    textBox.Name = "TextBox"
+    textBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    textBox.BackgroundTransparency = 1.000
+    textBox.BorderSizePixel = 0
+    textBox.Position = UDim2.new(0.616875172, 0, 0, 0)
+    textBox.Size = UDim2.new(0, 42, 0, 50)
+    textBox.Font = Enum.Font.SourceSansSemibold
+    textBox.Text = "F"
+    textBox.TextColor3 = Color3.fromRGB(111, 140, 220)
+    textBox.TextSize = 24.000
+    textBox.TextWrapped = true
+    textBox.ZIndex = 2
+
+    textBoxShadow.Name = "textBoxShadow"
+    textBoxShadow.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+    textBoxShadow.Position = UDim2.new(0, 0, 0, 10)
+    textBoxShadow.Size = UDim2.new(0, 128, 0, 57)
+    textBoxShadow.Font = Enum.Font.SourceSans
+    textBoxShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+    textBoxShadow.TextSize = 14.000
+    textBoxShadow.ZIndex = 2
 
     UICorner.CornerRadius = UDim.new(0.0199999996, 8)
-    UICorner.Parent = _G.tl
+    UICorner.Parent =  textBoxShadow
 
-
-    tl2.Parent = _G.tl
-    tl2.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
-    tl2.Size = UDim2.new(0, 121, 0, 50)
-    tl2.Font = Enum.Font.SourceSansBold
-    tl2.Text = text
-    tl2.TextColor3 = Color3.fromRGB(243, 243, 243)
-    tl2.TextSize = 24.000
-    tl2.TextXAlignment = Enum.TextXAlignment.Left
+    textBoxTitle.Parent =  textBoxShadow
+    textBoxTitle.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+    textBoxTitle.Size = UDim2.new(0, 121, 0, 50)
+    textBoxTitle.Font = Enum.Font.SourceSansBold
+    textBoxTitle.Text = text
+    textBoxTitle.TextColor3 = Color3.fromRGB(243, 243, 243)
+    textBoxTitle.TextSize = 24.000
+    textBoxTitle.TextXAlignment = Enum.TextXAlignment.Left
+    textBoxTitle.ZIndex = 2
     
     UICorner2.CornerRadius = UDim.new(0.0199999996, 8)
-    UICorner2.Parent = tl2
+    UICorner2.Parent = textBoxTitle
     
-    UIPadding.Parent = tl2
+    UIPadding.Parent = textBoxTitle
     UIPadding.PaddingLeft = UDim.new(0.100000001, 0)
     UIPadding.PaddingTop = UDim.new(0, -1)
-    
-    tb.Parent = _G.tl
-    tb.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    tb.BackgroundTransparency = 1.000
-    tb.BorderSizePixel = 0
-    tb.Position = UDim2.new(0.616875172, 0, 0, 0)
-    tb.Size = UDim2.new(0, 42, 0, 50)
-    tb.Font = Enum.Font.SourceSansSemibold
-    tb.Text = "F"
-    tb.TextColor3 = Color3.fromRGB(111, 140, 220)
-    tb.TextSize = 24.000
-    tb.TextWrapped = true
 
-    _G.tl.Parent = _G.TextKeyContainer
-    _G.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
-    _G.Position = UDim2.new(0.0299999993, 0, 0, 10)
-    _G.Size = UDim2.new(0, 128, 0, 57)
-    _G.Font = Enum.Font.SourceSans
-    _G.TextColor3 = Color3.fromRGB(0, 0, 0)
-    _G.TextSize = 14.000
-    
-    _G.t1.Parent = _G.WinContainer.tostring(parent)
-
-    -- for i, v in pairs(_G.WinContainer:GetChildren()) do
-    --   if v.ClassName == "Frame" then
-    --     _G.tl.Parent = parent
-    --   end
-    -- end
-
-  --   for i, v in pairs(_G.TabContainer:GetChildren()) do
-  --     print(_G.TabContainer)
-  --     if v.ClassName == "TextButton" then
-  --         v.MouseButton1Click:Connect(function()
-  --             for i, v2 in pairs(_G.WinContainer:GetChildren()) do
-  --                 if v2.Name ~= v.Name then
-  --                   v2.Visible = false
-  --                     print("Off")
-  --                 else
-  --                   v2.Visible = true
-  --                     print("On")
-  --                 end
-  --             end
-  --         end)
-  --     end
-  --   end
-  -- end
-    return btn
+    textBox.FocusLost:Connect(function(enter)
+      if enter then
+        if #textBox.Text > 0 then
+          pcall(callback, textBox.Text)
+        end
+      end
+    end)
+    return tabFunctions
   end
-
-
-
-local main = library:CreateWindow("Idk")
-
-main:CreateTab("Option1", "Yea")
-main:CreateTab("Option2", "Ello")
-btn:CreateButton("Hello", "Yea")
-
--- btn:CreateButton("Pls", "Hello")
--- btn:CreateButton("Kp", "Yep")
---   LocalPlayerFrame.Name = "LocalPlayerFrame"
---   LocalPlayerFrame.Parent = Container
---   LocalPlayerFrame.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
---   LocalPlayerFrame.BackgroundTransparency = 1.000
---   LocalPlayerFrame.BorderSizePixel = 0
---   LocalPlayerFrame.Position = UDim2.new(0, 178, 0, 20)
---   LocalPlayerFrame.Size = UDim2.new(0, 306, 0, 378)
-
---   UIPadding_2.Parent = LocalPlayerFrame
---   UIPadding_2.PaddingLeft = UDim.new(0, 8)
---   UIPadding_2.PaddingTop = UDim.new(0, 8)
-
---   TextBoxContainer.Name = "TextBoxContainer"
---   TextBoxContainer.Parent = LocalPlayerFrame
---   TextBoxContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
---   TextBoxContainer.BorderSizePixel = 0
---   TextBoxContainer.ClipsDescendants = true
---   TextBoxContainer.Position = UDim2.new(1.00007367, 0, -0.0200190134, 0)
---   TextBoxContainer.Size = UDim2.new(0, 313, 0, 377)
-
---   WalkSpeedBorder.Name = "WalkSpeedBorder"
---   WalkSpeedBorder.Parent = TextBoxContainer
---   WalkSpeedBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
---   WalkSpeedBorder.Position = UDim2.new(0, 60, 0, 10)
---   WalkSpeedBorder.Size = UDim2.new(0, 200, 0, 57)
---   WalkSpeedBorder.Font = Enum.Font.SourceSans
---   WalkSpeedBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
---   WalkSpeedBorder.TextSize = 14.000
-
---   UICorner_4.CornerRadius = UDim.new(0.0199999996, 8)
---   UICorner_4.Parent = WalkSpeedBorder
-
---   WalkSpeedText.Name = "WalkSpeedText"
---   WalkSpeedText.Parent = WalkSpeedBorder
---   WalkSpeedText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
---   WalkSpeedText.Size = UDim2.new(0, 200, 0, 50)
---   WalkSpeedText.Font = Enum.Font.SourceSansBold
---   WalkSpeedText.Text = "WalkSpeed"
---   WalkSpeedText.TextColor3 = Color3.fromRGB(243, 243, 243)
---   WalkSpeedText.TextSize = 24.000
-
---   UICorner_5.CornerRadius = UDim.new(0.0199999996, 8)
---   UICorner_5.Parent = WalkSpeedText
-
---   SpeedInput.Name = "SpeedInput"
---   SpeedInput.Parent = WalkSpeedBorder
---   SpeedInput.BackgroundColor3 = Color3.fromRGB(77, 79, 102)
---   SpeedInput.BorderSizePixel = 0
---   SpeedInput.Position = UDim2.new(0, 0, 0, 65)
---   SpeedInput.Size = UDim2.new(0, 200, 0, 26)
---   SpeedInput.Font = Enum.Font.SourceSansBold
---   SpeedInput.PlaceholderColor3 = Color3.fromRGB(97, 97, 97)
---   SpeedInput.PlaceholderText = "Enter Walkspeed here!"
---   SpeedInput.Text = ""
---   SpeedInput.TextColor3 = Color3.fromRGB(111, 140, 220)
---   SpeedInput.TextSize = 24.000
-
---   UICorner_6.Parent = SpeedInput
-
---   UIListLayout.Parent = TextBoxContainer
---   UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
---   UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
---   UIListLayout.Padding = UDim.new(0, 50)
-
---   UIPadding_3.Parent = TextBoxContainer
---   UIPadding_3.PaddingTop = UDim.new(0, 10)
-
---   TextKeyContainer.Name = "TextKeyContainer"
---   TextKeyContainer.Parent = LocalPlayerFrame
---   TextKeyContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
---   TextKeyContainer.BorderSizePixel = 0
---   TextKeyContainer.ClipsDescendants = true
---   TextKeyContainer.Position = UDim2.new(-0.0335570462, 0, -0.0216216221, 0)
---   TextKeyContainer.Size = UDim2.new(0, 308, 0, 378)
-
---   FlyBorder.Name = "FlyBorder"
---   FlyBorder.Parent = TextKeyContainer
---   FlyBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
---   FlyBorder.Position = UDim2.new(0.0299999993, 0, 0, 10)
---   FlyBorder.Size = UDim2.new(0, 128, 0, 57)
---   FlyBorder.Font = Enum.Font.SourceSans
---   FlyBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
---   FlyBorder.TextSize = 14.000
-
---   UICorner_7.CornerRadius = UDim.new(0.0199999996, 8)
---   UICorner_7.Parent = FlyBorder
-
---   FlyText.Name = "FlyText"
---   FlyText.Parent = FlyBorder
---   FlyText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
---   FlyText.Size = UDim2.new(0, 121, 0, 50)
---   FlyText.Font = Enum.Font.SourceSansBold
---   FlyText.Text = "Fly"
---   FlyText.TextColor3 = Color3.fromRGB(243, 243, 243)
---   FlyText.TextSize = 24.000
---   FlyText.TextXAlignment = Enum.TextXAlignment.Left
-
---   UICorner_8.CornerRadius = UDim.new(0.0199999996, 8)
---   UICorner_8.Parent = FlyText
-
---   UIPadding_4.Parent = FlyText
---   UIPadding_4.PaddingLeft = UDim.new(0.100000001, 0)
---   UIPadding_4.PaddingTop = UDim.new(0, -1)
-
---   KeyBind.Name = "KeyBind"
---   KeyBind.Parent = FlyBorder
---   KeyBind.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
---   KeyBind.BackgroundTransparency = 1.000
---   KeyBind.BorderSizePixel = 0
---   KeyBind.Position = UDim2.new(0.616875172, 0, 0, 0)
---   KeyBind.Size = UDim2.new(0, 42, 0, 50)
---   KeyBind.Font = Enum.Font.SourceSansSemibold
---   KeyBind.Text = "F"
---   KeyBind.TextColor3 = Color3.fromRGB(111, 140, 220)
---   KeyBind.TextSize = 24.000
---   KeyBind.TextWrapped = true
-
---   NoClipBorder.Name = "NoClipBorder"
---   NoClipBorder.Parent = TextKeyContainer
---   NoClipBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
---   NoClipBorder.Position = UDim2.new(0.0299999993, 0, 0, 80)
---   NoClipBorder.Size = UDim2.new(0, 128, 0, 57)
---   NoClipBorder.Font = Enum.Font.SourceSans
---   NoClipBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
---   NoClipBorder.TextSize = 14.000
-
---   UICorner_9.CornerRadius = UDim.new(0.0199999996, 8)
---   UICorner_9.Parent = NoClipBorder
-
---   NoClipText.Name = "NoClipText"
---   NoClipText.Parent = NoClipBorder
---   NoClipText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
---   NoClipText.Size = UDim2.new(0, 121, 0, 50)
---   NoClipText.Font = Enum.Font.SourceSansBold
---   NoClipText.Text = "NoClip"
---   NoClipText.TextColor3 = Color3.fromRGB(243, 243, 243)
---   NoClipText.TextSize = 24.000
---   NoClipText.TextXAlignment = Enum.TextXAlignment.Left
-
---   UICorner_10.CornerRadius = UDim.new(0.0199999996, 8)
---   UICorner_10.Parent = NoClipText
-
---   UIPadding_5.Parent = NoClipText
---   UIPadding_5.PaddingLeft = UDim.new(0.100000001, 0)
---   UIPadding_5.PaddingTop = UDim.new(0, -1)
-
---   KeyBind_2.Name = "KeyBind"
---   KeyBind_2.Parent = NoClipBorder
---   KeyBind_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
---   KeyBind_2.BackgroundTransparency = 1.000
---   KeyBind_2.BorderSizePixel = 0
---   KeyBind_2.Position = UDim2.new(0.616875172, 0, 0, 0)
---   KeyBind_2.Size = UDim2.new(0, 42, 0, 50)
---   KeyBind_2.Font = Enum.Font.SourceSansSemibold
---   KeyBind_2.Text = "B"
---   KeyBind_2.TextColor3 = Color3.fromRGB(111, 140, 220)
---   KeyBind_2.TextSize = 24.000
---   KeyBind_2.TextWrapped = true
-
---   UIListLayout_2.Parent = TextKeyContainer
---   UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
---   UIListLayout_2.Padding = UDim.new(0, 15)
-
---   UIPadding_6.Parent = TextKeyContainer
---   UIPadding_6.PaddingLeft = UDim.new(0, 50)
---   UIPadding_6.PaddingTop = UDim.new(0, 10)
-
--- Option1.Name = "Option1"
--- Option1.Parent = TabFrame
--- Option1.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
--- Option1.Size = UDim2.new(0, 149, 0, 42)
--- Option1.Font = Enum.Font.SourceSansSemibold
--- Option1.Text = "Option 1"
--- Option1.TextColor3 = Color3.fromRGB(229, 229, 229)
--- Option1.TextSize = 15.000
--- Option1.TextWrapped = true
-
--- UICorner_11.CornerRadius = UDim.new(0.0199999996, 8)
--- UICorner_11.Parent = Option1
-
--- UIListLayout_3.Parent = TabFrame
--- UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
--- UIListLayout_3.Padding = UDim.new(0, 10)
-
--- UIPadding_7.Parent = TabFrame
--- UIPadding_7.PaddingLeft = UDim.new(0, 14)
--- UIPadding_7.PaddingTop = UDim.new(0, 10)
-
---Properties:
-
-
-
-
-
-
-
-
-
-
-
--- Scripts:
-
--- local function YVGTFK_fake_script() -- PlayerName.Username 
--- 	local script = Instance.new('LocalScript', PlayerName)
-
--- 	local player = game.Players.LocalPlayer
-	
--- 	if player then
--- 		script.Parent.Text = ""..player.Name..""
--- 	end
--- end
--- coroutine.wrap(YVGTFK_fake_script)()
--- local function ASGOI_fake_script() -- PlayerImage.LocalScript 
--- 	local script = Instance.new('LocalScript', PlayerImage)
-
--- 	local frame = script.Parent.Parent
--- 	local player = game.Players.LocalPlayer
--- 	local userId = player.UserId
--- 	local thumType = Enum.ThumbnailType.HeadShot
--- 	local thumSize = Enum.ThumbnailSize.Size180x180
--- 	local content = game.Players:GetUserThumbnailAsync(userId, thumType, thumSize)
-	
--- 	frame.PlayerImage.Image = content
--- 	frame.PlayerName.Text = player.Name
--- end
--- coroutine.wrap(ASGOI_fake_script)()
--- local function EQICDI_fake_script() -- CloseButton.CloseUI 
--- 	local script = Instance.new('LocalScript', CloseButton)
-
--- 	local ScreenGui = script.Parent.Parent.Parent
-	
--- 	script.Parent.MouseButton1Click:Connect(function()
--- 		ScreenGui:Destroy()
--- 	end)
--- end
--- coroutine.wrap(EQICDI_fake_script)()
--- local function LBQK_fake_script() -- MinimizeButton.MinimizeUI 
--- 	local script = Instance.new('LocalScript', MinimizeButton)
-
--- 	local mainFrame = script.Parent.Parent
--- 	local open = false
-	
--- 	script.Parent.MouseButton1Click:Connect(function()
--- 		if mainFrame.Visible == false then
--- 			mainFrame.Visible = true
--- 		else
--- 			mainFrame.Visible = false
--- 		end
--- 	end)
--- end
--- coroutine.wrap(LBQK_fake_script)()
+  return tabHolder
+end
