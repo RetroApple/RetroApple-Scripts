@@ -250,140 +250,140 @@ function RetroAppleLib:tab()
 
   local tabHolder = {}
 
-function tabHolder:TabBtns(text)
+  function tabHolder:TabBtns(text)
 
-  local tabBtns = Instance.new("TextButton")
-  local UICorner_tab = Instance.new("UICorner")
+    local tabBtns = Instance.new("TextButton")
+    local UICorner_tab = Instance.new("UICorner")
 
-  tabBtns.Name = tostring(text)
-  tabBtns.Parent = TabContainer
-  tabBtns.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
-  tabBtns.Size = UDim2.new(0, 149, 0, 42)
-  tabBtns.Font = Enum.Font.SourceSansSemibold
-  tabBtns.Text = text
-  tabBtns.TextColor3 = Color3.fromRGB(229, 229, 229)
-  tabBtns.TextSize = 15.000
-  tabBtns.TextWrapped = true
-  tabBtns.ZIndex = 2
+    tabBtns.Name = tostring(text)
+    tabBtns.Parent = TabContainer
+    tabBtns.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+    tabBtns.Size = UDim2.new(0, 149, 0, 42)
+    tabBtns.Font = Enum.Font.SourceSansSemibold
+    tabBtns.Text = text
+    tabBtns.TextColor3 = Color3.fromRGB(229, 229, 229)
+    tabBtns.TextSize = 15.000
+    tabBtns.TextWrapped = true
+    tabBtns.ZIndex = 2
 
-  UICorner_tab.CornerRadius = UDim.new(0.0199999996, 8)
-  UICorner_tab.Parent = tabBtns
+    UICorner_tab.CornerRadius = UDim.new(0.0199999996, 8)
+    UICorner_tab.Parent = tabBtns
 
-  -- Tabs ------------------------------------------------------------
+    -- Tabs ------------------------------------------------------------
 
-  local tab = Instance.new("Frame")
+    local tab = Instance.new("Frame")
 
-  tab.Name = tostring(text)
-  tab.Parent = WinContainer
-  tab.ClipsDescendants = false
+    tab.Name = tostring(text)
+    tab.Parent = WinContainer
+    tab.ClipsDescendants = false
 
-  local UIListLayout = Instance.new("UIListLayout")
-  local UIPadding = Instance.new("UIPadding")
-  local TextKeyContainer = Instance.new("Frame") 
-  
-  TextKeyContainer.Name = "TextKeyContainer"
-  TextKeyContainer.Parent =  tab
-  TextKeyContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
-  TextKeyContainer.BorderSizePixel = 0
-  TextKeyContainer.ClipsDescendants = true
-  TextKeyContainer.Position = UDim2.new(0,175,0,20)
-  TextKeyContainer.Size = UDim2.new(0, 308, 0, 378)
-  TextKeyContainer.ZIndex = 1
-
-  UIListLayout.Parent =  TextKeyContainer
-  UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-  UIListLayout.Padding = UDim.new(0, 15)
-
-  UIPadding.Parent =  TextKeyContainer
-  UIPadding.PaddingLeft = UDim.new(0, 50)
-  UIPadding.PaddingTop = UDim.new(0, 10)
-
-  local UIListLayout2 = Instance.new("UIListLayout")
-  local UIPadding2 = Instance.new("UIPadding")
-  local TextBoxContainer = Instance.new("Frame") 
-
-  TextBoxContainer.Parent =  tab
-  TextBoxContainer.Name = "TextBoxContainer"
-  TextBoxContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
-  TextBoxContainer.BorderSizePixel = 0
-  TextBoxContainer.ClipsDescendants = true
-  TextBoxContainer.Position = UDim2.new(0,490.5,0,20)
-  TextBoxContainer.Size = UDim2.new(0, 308, 0, 378)
-  TextBoxContainer.ZIndex = 1
-
-  UIListLayout2.Parent =  TextBoxContainer
-  UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
-  UIListLayout2.Padding = UDim.new(0, 50)
-
-  UIPadding2.Parent =  TextBoxContainer
-  UIPadding2.PaddingLeft = UDim.new(0, 50)
-  UIPadding2.PaddingTop = UDim.new(0, 10)
-
-  local tabFunctions = {}
-
-  function tabFunctions:Bind(text, placetext, callback)
-
+    local UIListLayout = Instance.new("UIListLayout")
     local UIPadding = Instance.new("UIPadding")
-    local UICorner = Instance.new("UICorner")
-    local UICorner2 = Instance.new("UICorner")
-    local textBox = Instance.new("TextBox")
-    local textBoxShadow = Instance.new("TextLabel")
-    local textBoxTitle = Instance.new("TextLabel")
-
-    textBox.Parent =  textBoxShadow
-    textBox.Name = "TextBox"
-    textBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    textBox.BackgroundTransparency = 1.000
-    textBox.BorderSizePixel = 0
-    textBox.Position = UDim2.new(0.616875172, 0, 0, 0)
-    textBox.Size = UDim2.new(0, 42, 0, 50)
-    textBox.Font = Enum.Font.SourceSansSemibold
-    textBox.Text = "F"
-    textBox.TextColor3 = Color3.fromRGB(111, 140, 220)
-    textBox.TextSize = 24.000
-    textBox.TextWrapped = true
-    textBox.ZIndex = 2
-
-    textBoxShadow.Name = "textBoxShadow"
-    textBoxShadow.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
-    textBoxShadow.Position = UDim2.new(0, 0, 0, 10)
-    textBoxShadow.Size = UDim2.new(0, 128, 0, 57)
-    textBoxShadow.Font = Enum.Font.SourceSans
-    textBoxShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
-    textBoxShadow.TextSize = 14.000
-    textBoxShadow.ZIndex = 2
-
-    UICorner.CornerRadius = UDim.new(0.0199999996, 8)
-    UICorner.Parent =  textBoxShadow
-
-    textBoxTitle.Parent =  textBoxShadow
-    textBoxTitle.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
-    textBoxTitle.Size = UDim2.new(0, 121, 0, 50)
-    textBoxTitle.Font = Enum.Font.SourceSansBold
-    textBoxTitle.Text = text
-    textBoxTitle.TextColor3 = Color3.fromRGB(243, 243, 243)
-    textBoxTitle.TextSize = 24.000
-    textBoxTitle.TextXAlignment = Enum.TextXAlignment.Left
-    textBoxTitle.ZIndex = 2
+    local TextKeyContainer = Instance.new("Frame") 
     
-    UICorner2.CornerRadius = UDim.new(0.0199999996, 8)
-    UICorner2.Parent = textBoxTitle
-    
-    UIPadding.Parent = textBoxTitle
-    UIPadding.PaddingLeft = UDim.new(0.100000001, 0)
-    UIPadding.PaddingTop = UDim.new(0, -1)
+    TextKeyContainer.Name = "TextKeyContainer"
+    TextKeyContainer.Parent =  tab
+    TextKeyContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
+    TextKeyContainer.BorderSizePixel = 0
+    TextKeyContainer.ClipsDescendants = true
+    TextKeyContainer.Position = UDim2.new(0,175,0,20)
+    TextKeyContainer.Size = UDim2.new(0, 308, 0, 378)
+    TextKeyContainer.ZIndex = 1
 
-    textBox.FocusLost:Connect(function(enter)
-      if enter then
-        if #textBox.Text > 0 then
-          pcall(callback, textBox.Text)
+    UIListLayout.Parent =  TextKeyContainer
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout.Padding = UDim.new(0, 15)
+
+    UIPadding.Parent =  TextKeyContainer
+    UIPadding.PaddingLeft = UDim.new(0, 50)
+    UIPadding.PaddingTop = UDim.new(0, 10)
+
+    local UIListLayout2 = Instance.new("UIListLayout")
+    local UIPadding2 = Instance.new("UIPadding")
+    local TextBoxContainer = Instance.new("Frame") 
+
+    TextBoxContainer.Parent =  tab
+    TextBoxContainer.Name = "TextBoxContainer"
+    TextBoxContainer.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
+    TextBoxContainer.BorderSizePixel = 0
+    TextBoxContainer.ClipsDescendants = true
+    TextBoxContainer.Position = UDim2.new(0,490.5,0,20)
+    TextBoxContainer.Size = UDim2.new(0, 308, 0, 378)
+    TextBoxContainer.ZIndex = 1
+
+    UIListLayout2.Parent =  TextBoxContainer
+    UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout2.Padding = UDim.new(0, 50)
+
+    UIPadding2.Parent =  TextBoxContainer
+    UIPadding2.PaddingLeft = UDim.new(0, 50)
+    UIPadding2.PaddingTop = UDim.new(0, 10)
+
+    local tabFunctions = {}
+
+    function tabFunctions:Bind(text, placetext, callback)
+
+      local UIPadding = Instance.new("UIPadding")
+      local UICorner = Instance.new("UICorner")
+      local UICorner2 = Instance.new("UICorner")
+      local textBox = Instance.new("TextBox")
+      local textBoxShadow = Instance.new("TextLabel")
+      local textBoxTitle = Instance.new("TextLabel")
+
+      textBox.Parent =  textBoxShadow
+      textBox.Name = "TextBox"
+      textBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+      textBox.BackgroundTransparency = 1.000
+      textBox.BorderSizePixel = 0
+      textBox.Position = UDim2.new(0.616875172, 0, 0, 0)
+      textBox.Size = UDim2.new(0, 42, 0, 50)
+      textBox.Font = Enum.Font.SourceSansSemibold
+      textBox.Text = "F"
+      textBox.TextColor3 = Color3.fromRGB(111, 140, 220)
+      textBox.TextSize = 24.000
+      textBox.TextWrapped = true
+      textBox.ZIndex = 2
+
+      textBoxShadow.Name = "textBoxShadow"
+      textBoxShadow.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+      textBoxShadow.Position = UDim2.new(0, 0, 0, 10)
+      textBoxShadow.Size = UDim2.new(0, 128, 0, 57)
+      textBoxShadow.Font = Enum.Font.SourceSans
+      textBoxShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+      textBoxShadow.TextSize = 14.000
+      textBoxShadow.ZIndex = 2
+
+      UICorner.CornerRadius = UDim.new(0.0199999996, 8)
+      UICorner.Parent =  textBoxShadow
+
+      textBoxTitle.Parent =  textBoxShadow
+      textBoxTitle.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+      textBoxTitle.Size = UDim2.new(0, 121, 0, 50)
+      textBoxTitle.Font = Enum.Font.SourceSansBold
+      textBoxTitle.Text = text
+      textBoxTitle.TextColor3 = Color3.fromRGB(243, 243, 243)
+      textBoxTitle.TextSize = 24.000
+      textBoxTitle.TextXAlignment = Enum.TextXAlignment.Left
+      textBoxTitle.ZIndex = 2
+      
+      UICorner2.CornerRadius = UDim.new(0.0199999996, 8)
+      UICorner2.Parent = textBoxTitle
+      
+      UIPadding.Parent = textBoxTitle
+      UIPadding.PaddingLeft = UDim.new(0.100000001, 0)
+      UIPadding.PaddingTop = UDim.new(0, -1)
+
+      textBox.FocusLost:Connect(function(enter)
+        if enter then
+          if #textBox.Text > 0 then
+            pcall(callback, textBox.Text)
+          end
         end
-      end
-    end)
-    return tabFunctions
+      end)
+      return tabFunctions
+    end
+    return tabHolder
   end
-  return tabHolder
 end
-end
-
 return RetroAppleLib
+
