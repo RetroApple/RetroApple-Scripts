@@ -10,6 +10,9 @@ RetroAppleGUI.Name = "RetroAppleGUI"
 RetroAppleGUI.Parent = game.CoreGui
 RetroAppleGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+function Test()
+
+end
 
 function MakeDraggable(topbarobject, object)
 	local Dragging = nil
