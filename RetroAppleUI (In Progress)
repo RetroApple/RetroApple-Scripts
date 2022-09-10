@@ -323,7 +323,7 @@ function RetroAppleLib:tab()
 
     function tabFunctions:Bind(text, placetext, location, callback)
 
-      local UIPadding = Instance.new("+")
+      local UIPadding = Instance.new("UIPadding")
       local UICorner = Instance.new("UICorner")
       local UICorner2 = Instance.new("UICorner")
       local textBox = Instance.new("TextBox")
