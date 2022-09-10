@@ -1,5 +1,7 @@
 -- Made by RetroApple
 
+-- Made by RetroApple
+
 local RetroAppleLib = {}
 local UIS = game:GetService("UserInputService")
 local localPlayer = game:GetService("Players").LocalPlayer
@@ -380,10 +382,11 @@ function RetroAppleLib:tab()
           end
         end
       end)
-      return tabFunctions
+      
     end
-    return tabHolder
+    return tabFunctions
   end
+  return tabHolder
 end
 return RetroAppleLib
 
