@@ -11,7 +11,7 @@ RetroAppleGUI.Parent = game.CoreGui
 RetroAppleGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 function Test()
-
+    print("Hello")
 end
 
 function MakeDraggable(topbarobject, object)
