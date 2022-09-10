@@ -1,4 +1,4 @@
--- Made by Retroapple
+-- Made by RetroApple
 
 local RetroAppleLib = {}
 local UIS = game:GetService("UserInputService")
@@ -12,11 +12,8 @@ RetroAppleGUI.Name = "RetroAppleGUI"
 RetroAppleGUI.Parent = game.CoreGui
 RetroAppleGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-function Test()
-    print("Hello")
-end
 
-function MakeDraggable(topbarobject, object)
+function Draggable(topUI, object)
 	local Dragging = nil
 	local DragInput = nil
 	local DragStart = nil
@@ -34,7 +31,7 @@ function MakeDraggable(topbarobject, object)
 		object.Position = pos
 	end
 
-	topbarobject.InputBegan:Connect(
+	topUI.InputBegan:Connect(
 		function(input)
 			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 				Dragging = true
@@ -52,7 +49,7 @@ function MakeDraggable(topbarobject, object)
 		end
 	)
 
-	topbarobject.InputChanged:Connect(
+	topUI.InputChanged:Connect(
 		function(input)
 			if
 				input.UserInputType == Enum.UserInputType.MouseMovement or
@@ -125,7 +122,7 @@ function RetroAppleLib:tab()
   MainFrame.Position = UDim2.new(0.275814891, 0, 0.374562413, 0)
   MainFrame.Size = UDim2.new(0, 798, 0, 398)
 
-  MakeDraggable(TopBar, MainFrame)
+  Draggable(TopBar, MainFrame)
 
   TopBar.Name = "TopBar"
   TopBar.Parent = MainFrame
@@ -250,9 +247,8 @@ function RetroAppleLib:tab()
 	
 	UserWindow.PlayerImage.Image = content
 	UserWindow.PlayerName.Text = player.Name 
-end
 
-local tabHolder = {}
+  local tabHolder = {}
 
 function tabHolder:TabBtns(text)
 
@@ -326,6 +322,7 @@ function tabHolder:TabBtns(text)
   local tabFunctions = {}
 
   function tabFunctions:Bind(text, placetext, callback)
+
     local UIPadding = Instance.new("UIPadding")
     local UICorner = Instance.new("UICorner")
     local UICorner2 = Instance.new("UICorner")
@@ -387,4 +384,6 @@ function tabHolder:TabBtns(text)
   end
   return tabHolder
 end
+end
+
 return RetroAppleLib
