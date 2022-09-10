@@ -1,3 +1,5 @@
+-- Made by Retroapple
+
 local RetroAppleLib = {}
 local UIS = game:GetService("UserInputService")
 local localPlayer = game:GetService("Players").LocalPlayer
