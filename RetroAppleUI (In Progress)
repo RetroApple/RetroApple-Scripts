@@ -1,7 +1,5 @@
 -- Made by RetroApple
 
--- Made by RetroApple
-
 local RetroAppleLib = {}
 local UIS = game:GetService("UserInputService")
 local localPlayer = game:GetService("Players").LocalPlayer
@@ -323,7 +321,7 @@ function RetroAppleLib:tab()
 
     local tabFunctions = {}
 
-    function tabFunctions:Bind(text, placetext, callback)
+    function tabFunctions:Bind(text, placetext, location, callback)
 
       local UIPadding = Instance.new("UIPadding")
       local UICorner = Instance.new("UICorner")
@@ -375,6 +373,12 @@ function RetroAppleLib:tab()
       UIPadding.PaddingLeft = UDim.new(0.100000001, 0)
       UIPadding.PaddingTop = UDim.new(0, -1)
 
+      for i, v in pairs(WinContainer:GetChildren()) do
+        if i == tonumber(location) then
+          textBoxShadow.Parent = v.TextBoxContainer
+        end
+      end
+
       textBox.FocusLost:Connect(function(enter)
         if enter then
           if #textBox.Text > 0 then
@@ -389,4 +393,3 @@ function RetroAppleLib:tab()
   return tabHolder
 end
 return RetroAppleLib
-
