@@ -321,74 +321,78 @@ function RetroAppleLib:Window()
 
     local tabFunctions = {}
 
-    function tabFunctions:Bind(text, location, callback)
+    function tabFunctions:Bind(text, presetbind, location, callback)
 
       local UIPadding = Instance.new("UIPadding")
       local UICorner = Instance.new("UICorner")
       local UICorner2 = Instance.new("UICorner")
-      local textBox = Instance.new("TextBox")
-      local textBoxShadow = Instance.new("TextLabel")
-      local textBoxTitle = Instance.new("TextLabel")
+      local KeyBindText = Instance.new("TextLabel")
+      local KeyBindShadow = Instance.new("TextLabel")
+      local KeyBind = Instance.new("TextButton")
+      local Key = presetbind.Name
 
-      textBox.Parent =  textBoxShadow
-      textBox.Name = "TextBox"
-      textBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-      textBox.BackgroundTransparency = 1.000
-      textBox.BorderSizePixel = 0
-      textBox.Position = UDim2.new(0.616875172, 0, 0, 0)
-      textBox.Size = UDim2.new(0, 42, 0, 50)
-      textBox.Font = Enum.Font.SourceSansSemibold
-      textBox.Text = "F"
-      textBox.TextColor3 = Color3.fromRGB(111, 140, 220)
-      textBox.TextSize = 24.000
-      textBox.TextWrapped = true
-      textBox.ZIndex = 3
+      KeyBindText.Name = "KeyBindText"
+      KeyBindText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+      KeyBindText.BackgroundTransparency = 1.000
+      KeyBindText.BorderSizePixel = 0
+      KeyBindText.Position = UDim2.new(0.616875172, 0, 0, 0)
+      KeyBindText.Size = UDim2.new(0, 42, 0, 50)
+      KeyBindText.Font = Enum.Font.SourceSansSemibold
+      KeyBindText.Text = "G"
+      KeyBindText.TextColor3 = Color3.fromRGB(111, 140, 220)
+      KeyBindText.TextSize = 24.000
+      KeyBindText.TextWrapped = true
+      KeyBindText.ZIndex = 3
 
-      textBoxShadow.Name = "textBoxShadow"
-      textBoxShadow.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
-      textBoxShadow.Position = UDim2.new(0, 0, 0, 10)
-      textBoxShadow.Size = UDim2.new(0, 128, 0, 57)
-      textBoxShadow.Font = Enum.Font.SourceSans
-      textBoxShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
-      textBoxShadow.TextSize = 14.000
-      textBoxShadow.ZIndex = 2
+      KeyBindShadow.Name = "KeyBindShadow"
+      KeyBindShadow.Parent = KeyBind
+      KeyBindShadow.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+      KeyBindShadow.Position = UDim2.new(0, 0, 0, 10)
+      KeyBindShadow.Size = UDim2.new(0, 128, 0, 57)
+      KeyBindShadow.Font = Enum.Font.SourceSans
+      KeyBindShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
+      KeyBindShadow.TextSize = 14.000
+      KeyBindShadow.ZIndex = 2
 
       UICorner.CornerRadius = UDim.new(0.0199999996, 8)
-      UICorner.Parent =  textBoxShadow
+      UICorner.Parent =  KeyBindShadow
 
-      textBoxTitle.Parent =  textBoxShadow
-      textBoxTitle.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
-      textBoxTitle.Size = UDim2.new(0, 121, 0, 50)
-      textBoxTitle.Font = Enum.Font.SourceSansBold
-      textBoxTitle.Text = text
-      textBoxTitle.TextColor3 = Color3.fromRGB(243, 243, 243)
-
-
-      textBoxTitle.TextSize = 24.000
-      textBoxTitle.TextXAlignment = Enum.TextXAlignment.Left
-      textBoxTitle.ZIndex = 2
+      KeyBind.Name = "KeyBind"
+      KeyBind.Parent =  KeyBindShadow
+      KeyBind.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+      KeyBind.Size = UDim2.new(0, 121, 0, 50)
+      KeyBind.Font = Enum.Font.SourceSansBold
+      KeyBind.Text = text
+      KeyBind.TextColor3 = Color3.fromRGB(243, 243, 243)
+      KeyBind.TextSize = 24.000
+      KeyBind.TextXAlignment = Enum.TextXAlignment.Left
+      KeyBind.ZIndex = 2
       
       UICorner2.CornerRadius = UDim.new(0.0199999996, 8)
-      UICorner2.Parent = textBoxTitle
+      UICorner2.Parent = KeyBind
       
-      UIPadding.Parent = textBoxTitle
+      UIPadding.Parent = KeyBind
       UIPadding.PaddingLeft = UDim.new(0.100000001, 0)
       UIPadding.PaddingTop = UDim.new(0, -1)
 
-      for i, v in pairs(WinContainer:GetChildren()) do
-        if i == tonumber(location) then
-          textBoxShadow.Parent = v.TextKeyContainer
-        end
-      end
+      KeyBind.MouseButton1Click:Connect(function()
+          KeyBindText.Text = "..."
+          local inputWait = game:GetService("UserInputService").InputBegan:Wait()
+          if inputWait.KeyCode.Name ~= "Unknown" then
+            KeyBindText.Text = inputWait.KeyCode.Name
+            Key = inputWait.KeyCode.Name
+          end
+      end)
 
-      textBox.FocusLost:Connect(function(enter)
-        if enter then
-          if #textBox.Text > 0 then
-            pcall(callback, textBox.Text)
+      game:GetService("UserInputService").InputBegan:Connect(
+      function(current, pressed)
+        if not pressed then
+          if current.KeyCode.Name == Key then
+            pcall(callback)
           end
         end
       end)
-      
+
     end
     return tabFunctions
   end
