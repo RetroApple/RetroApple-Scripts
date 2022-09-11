@@ -4,7 +4,7 @@ I am currently working on making UI Libs for Roblox so, for each one I make I wi
 
 ## RetroApple UI LIB
 ```lua
-local main = loadstring(game:HttpGet('https://raw.githubusercontent.com/Retroapple/RetroApple-Scripts/UI-Libs/RetroAppleUI%20(In%20Progress)'))()
+local main = loadstring(game:HttpGet('https://raw.githubusercontent.com/Retroapple/RetroApple-Scripts/UI-Libs/RetroAppleUI.txt'))()
 
 local Window = main:Window()
 local Tab = Window:Tab("Tab1")
