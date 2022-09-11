@@ -319,6 +319,7 @@ function RetroAppleLib:Window()
     UIPadding2.PaddingLeft = UDim.new(0, 50)
     UIPadding2.PaddingTop = UDim.new(0, 10)
 
+
     for i, v in pairs(WinContainer:GetChildren()) do
       v.Visible = false
     end
@@ -336,7 +337,6 @@ function RetroAppleLib:Window()
           end)
         end
       end
-    end
 
     local tabFunctions = {}
 
