@@ -319,6 +319,25 @@ function RetroAppleLib:Window()
     UIPadding2.PaddingLeft = UDim.new(0, 50)
     UIPadding2.PaddingTop = UDim.new(0, 10)
 
+    for i, v in pairs(WinContainer:GetChildren()) do
+      v.Visible = false
+    end
+
+    for i, v in pairs(TabContainer:GetChildren()) do
+      if v.ClassName == "TextButton" then
+          v.MouseButton1Click:Connect(function()
+            for i, v2 in pairs(WinContainer:GetChildren()) do
+                if v2.Name ~= v.Name then
+                  v2.Visible = false
+                else
+                  v2.Visible = true
+                end
+              end 
+          end)
+        end
+      end
+    end
+
     local tabFunctions = {}
 
     function tabFunctions:Bind(text, presetbind, location, callback)
