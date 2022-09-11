@@ -110,8 +110,6 @@ function RetroAppleLib:Window()
   UIPadding_TabContainer.PaddingLeft = UDim.new(0, 14)
   UIPadding_TabContainer.PaddingTop = UDim.new(0, 10)
 
-  -- local TabContainer.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-
   MainFrame.Name = "MainFrame"
   MainFrame.Parent = RetroAppleGUI
   MainFrame.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
@@ -315,7 +313,6 @@ function RetroAppleLib:Window()
     UIPadding2.PaddingLeft = UDim.new(0, 50)
     UIPadding2.PaddingTop = UDim.new(0, 10)
 
-
     for i, v in pairs(WinContainer:GetChildren()) do
       v.Visible = false
     end
@@ -333,6 +330,7 @@ function RetroAppleLib:Window()
           end)
         end
       end
+    
 
     local tabFunctions = {}
 
@@ -347,6 +345,7 @@ function RetroAppleLib:Window()
       local Key = presetbind.Name
 
       KeyBindText.Name = "KeyBindText"
+      KeyBindText.Text = ""
       KeyBindText.Parent = KeyBindShadow
       KeyBindText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
       KeyBindText.BackgroundTransparency = 1.000
@@ -410,6 +409,70 @@ function RetroAppleLib:Window()
       for i, v in pairs(WinContainer:GetChildren()) do
         if i == tonumber(location) then
           KeyBindShadow.Parent = v.TextKeyContainer
+        end
+      end
+    end
+
+    function tabFunctions:TextBox(text, placetext, location, callback)
+      local TextBoxBorder = Instance.new("TextLabel")
+      local TextBoxTitle = Instance.new("TextLabel")
+      local TextBoxInput = Instance.new("TextBox")
+      local UICorner_1 = Instance.new("UICorner")
+      local UICorner_2 = Instance.new("UICorner")
+      local UICorner_3 = Instance.new("UICorner")
+
+      TextBoxBorder.Name = "TextBoxBorder"
+      TextBoxBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+      TextBoxBorder.Position = UDim2.new(0, 0, 0, 0)
+      TextBoxBorder.Size = UDim2.new(0, 200, 0, 57)
+      TextBoxBorder.Font = Enum.Font.SourceSans
+      TextBoxBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
+      TextBoxBorder.TextSize = 14.000
+      TextBoxBorder.ZIndex = 2
+
+      UICorner_1.CornerRadius = UDim.new(0.0199999996, 8)
+      UICorner_1.Parent = TextBoxBorder
+
+      TextBoxTitle.Name = "TextBoxTitle"
+      TextBoxTitle.Parent = TextBoxBorder
+      TextBoxTitle.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+      TextBoxTitle.Size = UDim2.new(0, 200, 0, 50)
+      TextBoxTitle.Font = Enum.Font.SourceSansBold
+      TextBoxTitle.Text = text
+      TextBoxTitle.TextColor3 = Color3.fromRGB(243, 243, 243)
+      TextBoxTitle.TextSize = 24.000
+      TextBoxTitle.ZIndex = 2
+
+      UICorner_2.CornerRadius = UDim.new(0.0199999996, 8)
+      UICorner_2.Parent = TextBoxTitle
+
+      TextBoxInput.Name = "TextBoxInput"
+      TextBoxInput.Parent = TextBoxBorder
+      TextBoxInput.BackgroundColor3 = Color3.fromRGB(77, 79, 102)
+      TextBoxInput.BorderSizePixel = 0
+      TextBoxInput.Position = UDim2.new(0, 0, 0, 65)
+      TextBoxInput.Size = UDim2.new(0, 200, 0, 26)
+      TextBoxInput.Font = Enum.Font.SourceSansBold
+      TextBoxInput.PlaceholderColor3 = Color3.fromRGB(97, 97, 97)
+      TextBoxInput.PlaceholderText = placetext
+      TextBoxInput.Text = ""
+      TextBoxInput.TextColor3 = Color3.fromRGB(111, 140, 220)
+      TextBoxInput.TextSize = 24.000
+      TextBoxInput.ZIndex = 2
+
+      UICorner_3.Parent = TextBoxInput
+
+      TextBoxInput.FocusLost:Connect(function(enter)
+        if enter then
+          if #TextBoxInput > 0 then
+            pcall(callback, TextBoxInput.Text)
+          end
+        end
+      end)
+
+      for i, v in pairs(WinContainer:GetChildren()) do
+        if i == tonumber(location) then
+          textBoxShadow.Parent = v.TextBoxContainer
         end
       end
     end
