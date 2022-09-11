@@ -248,7 +248,7 @@ function RetroAppleLib:Window()
  UserWindow.PlayerImage.Image = content
  UserWindow.PlayerName.Text = player.Name 
 
-  local tabHolder = {}
+ local tabHolder = {}
 
   function tabHolder:Tab(text)
 
@@ -342,7 +342,7 @@ function RetroAppleLib:Window()
       textBox.TextColor3 = Color3.fromRGB(111, 140, 220)
       textBox.TextSize = 24.000
       textBox.TextWrapped = true
-      textBox.ZIndex = 2
+      textBox.ZIndex = 3
 
       textBoxShadow.Name = "textBoxShadow"
       textBoxShadow.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
