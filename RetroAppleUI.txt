@@ -332,7 +332,7 @@ function RetroAppleLib:Window()
       local Key = presetbind.Name
 
       KeyBindText.Name = "KeyBindText"
-      KeyBindText.Parent = KeyBind
+      KeyBindText.Parent = KeyBindShadow
       KeyBindText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
       KeyBindText.BackgroundTransparency = 1.000
       KeyBindText.BorderSizePixel = 0
@@ -346,7 +346,6 @@ function RetroAppleLib:Window()
       KeyBindText.ZIndex = 3
 
       KeyBindShadow.Name = "KeyBindShadow"
-      KeyBindShadow.Parent = KeyBind
       KeyBindShadow.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
       KeyBindShadow.Position = UDim2.new(0, 0, 0, 10)
       KeyBindShadow.Size = UDim2.new(0, 128, 0, 57)
@@ -359,6 +358,7 @@ function RetroAppleLib:Window()
       UICorner.Parent =  KeyBindShadow
 
       KeyBind.Name = "KeyBind"
+      KeyBind.Parent = KeyBindShadow
       KeyBind.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
       KeyBind.Size = UDim2.new(0, 121, 0, 50)
       KeyBind.Font = Enum.Font.SourceSansBold
@@ -398,7 +398,6 @@ function RetroAppleLib:Window()
           KeyBind.Parent = v.TextKeyContainer
         end
       end
-
     end
     return tabFunctions
   end
