@@ -464,7 +464,7 @@ function RetroAppleLib:Window()
 
       TextBoxInput.FocusLost:Connect(function(enter)
         if enter then
-          if #TextBoxInput > 0 then
+          if #tostring(TextBoxInput) > 0 then
             pcall(callback, TextBoxInput.Text)
           end
         end
