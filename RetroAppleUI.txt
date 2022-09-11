@@ -339,7 +339,6 @@ function RetroAppleLib:Window()
       KeyBindText.Position = UDim2.new(0.616875172, 0, 0, 0)
       KeyBindText.Size = UDim2.new(0, 42, 0, 50)
       KeyBindText.Font = Enum.Font.SourceSansSemibold
-      KeyBindText.Text = "G"
       KeyBindText.TextColor3 = Color3.fromRGB(111, 140, 220)
       KeyBindText.TextSize = 24.000
       KeyBindText.TextWrapped = true
@@ -395,7 +394,7 @@ function RetroAppleLib:Window()
 
       for i, v in pairs(WinContainer:GetChildren()) do
         if i == tonumber(location) then
-          KeyBind.Parent = v.TextKeyContainer
+          KeyBindShadow.Parent = v.TextKeyContainer
         end
       end
     end
