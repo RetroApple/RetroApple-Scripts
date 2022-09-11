@@ -472,7 +472,7 @@ function RetroAppleLib:Window()
 
       for i, v in pairs(WinContainer:GetChildren()) do
         if i == tonumber(location) then
-          textBoxShadow.Parent = v.TextBoxContainer
+          TextBoxBorder.Parent = v.TextBoxContainer
         end
       end
     end
