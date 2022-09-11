@@ -112,10 +112,6 @@ function RetroAppleLib:tab()
 
   -- local TabContainer.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 
-  RetroAppleGUI.Parent = game.CoreGui
-  RetroAppleGUI.Name = "RetroAppleGUI"
-  RetroAppleGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
   MainFrame.Name = "MainFrame"
   MainFrame.Parent = RetroAppleGUI
   MainFrame.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
