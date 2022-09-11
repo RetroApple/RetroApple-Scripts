@@ -393,6 +393,12 @@ function RetroAppleLib:Window()
         end
       end)
 
+      for i, v in pairs(WinContainer:GetChildren()) do
+        if i == tonumber(location) then
+          KeyBind.Parent = v.TextKeyContainer
+        end
+      end
+
     end
     return tabFunctions
   end
