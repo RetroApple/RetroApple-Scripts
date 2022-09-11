@@ -4,12 +4,12 @@ I am currently working on making UI Libs for Roblox so, for each one I make I wi
 
 ## RetroApple UI LIB
 ```lua
-local main = loadstring(game:HttpGet('https://raw.githubusercontent.com/Retroapple/RetroApple-Scripts/main/RetroAppleUI%20(In%20Progress)'))()
+local main = loadstring(game:HttpGet('https://raw.githubusercontent.com/Retroapple/RetroApple-Scripts/UI-Libs/RetroAppleUI%20(In%20Progress)'))()
 
-local windows = main:window()
-local tab = window:Tab("Tab1")
+local Window = main:Window()
+local Tab = Window:Tab("Tab1")
 
-local bind = tabBtns:Bind("Fly", "1", function() end)
+local bind = Tab:Bind("Fly", "1", function() end)
 
--- These are only the options so far I will update this script once I make new ones
+-- These are only the options so far. I will update this script once I make new functions
 ```
