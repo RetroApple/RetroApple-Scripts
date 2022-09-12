@@ -413,7 +413,7 @@ function RetroAppleLib:Window()
       end
     end
 
-    function tabFunctions:TextBox(text, placetext, location, callback)
+    function tabFunctions:TextBox(text, placetext, location, disapper, callback)
       local TextBoxBorder = Instance.new("TextLabel")
       local TextBoxTitle = Instance.new("TextLabel")
       local TextBoxInput = Instance.new("TextBox")
@@ -466,6 +466,9 @@ function RetroAppleLib:Window()
         if enter then
           if #tostring(TextBoxInput) > 0 then
             pcall(callback, TextBoxInput.Text)
+            if disapper then
+                TextBoxInput.Text = ""
+            end
           end
         end
       end)
