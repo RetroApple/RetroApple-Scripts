@@ -526,7 +526,7 @@ function RetroAppleLib:Window()
       ToggleButton.Position = UDim2.new(0.5625, 0, 0, 0)
       ToggleButton.Size = UDim2.new(0, 43, 0, 50)
       ToggleButton.Font = Enum.Font.SourceSansBold
-      ToggleButton.Text = ""
+      ToggleButton.Text = "OFF"
       ToggleButton.TextColor3 = Color3.fromRGB(206, 41, 8)
       ToggleButton.TextSize = 24.000
 
@@ -534,7 +534,7 @@ function RetroAppleLib:Window()
         if toggled == false then
             ToggleButton.Text = "ON"
             ToggleButton.TextColor3 = Color3.fromHex("47ce0c")
-            ToggleButton.TextColor = Color3.new(71, 206, 12)
+            ToggleButton.TextColor3 = Color3.new(71, 206, 12)
         else
           ToggleButton.Text = "OFF"
           ToggleButton.TextColor3 = Color3.fromHex("ce2908")
