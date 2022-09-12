@@ -534,11 +534,9 @@ function RetroAppleLib:Window()
         if toggled == false then
             ToggleButton.Text = "ON"
             ToggleButton.TextColor3 = Color3.fromHex("47ce0c")
-            ToggleButton.TextColor3 = Color3.new(71, 206, 12)
         else
           ToggleButton.Text = "OFF"
           ToggleButton.TextColor3 = Color3.fromHex("ce2908")
-          ToggleButton.TextColor3 = Color3.new(206, 41, 8)
         end
         toggled = not toggled
         pcall(callback, toggled)
