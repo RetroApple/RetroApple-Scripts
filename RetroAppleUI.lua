@@ -506,7 +506,7 @@ function RetroAppleLib:Window()
       ToggleText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
       ToggleText.Size = UDim2.new(0, 121, 0, 50)
       ToggleText.Font = Enum.Font.SourceSansBold
-      ToggleText.Text = "ESP"
+      ToggleText.Text = text
       ToggleText.TextColor3 = Color3.fromRGB(243, 243, 243)
       ToggleText.TextSize = 24.000
       ToggleText.TextXAlignment = Enum.TextXAlignment.Left
