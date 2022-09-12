@@ -479,6 +479,79 @@ function RetroAppleLib:Window()
         end
       end
     end
+
+    function tabFunctions:Toggle(text, off, location, callback)
+      local ToggleBorder = Instance.new("TextLabel")
+      local ToggleText = Instance.new("TextLabel")
+      local ToggleButton = Instance.new("TextButton")
+      local UICorner_1 = Instance.new("UICorner")
+      local UICorner_2 = Instance.new("UICorner")
+      local UIPadding_3 = Instance.new("UIPadding")
+      local toggled = false
+
+
+      ToggleBorder.Name = "ToggleBorder"
+      ToggleBorder.BackgroundColor3 = Color3.fromRGB(30, 31, 40)
+      ToggleBorder.Position = UDim2.new(0.0299999993, 0, 0, 10)
+      ToggleBorder.Size = UDim2.new(0, 128, 0, 57)
+      ToggleBorder.Font = Enum.Font.SourceSans
+      ToggleBorder.TextColor3 = Color3.fromRGB(0, 0, 0)
+      ToggleBorder.TextSize = 14.000
+
+      UICorner_1.CornerRadius = UDim.new(0.0199999996, 8)
+      UICorner_1.Parent = ToggleBorder
+
+      ToggleText.Name = "ToggleText"
+      ToggleText.Parent = ToggleBorder
+      ToggleText.BackgroundColor3 = Color3.fromRGB(62, 64, 82)
+      ToggleText.Size = UDim2.new(0, 121, 0, 50)
+      ToggleText.Font = Enum.Font.SourceSansBold
+      ToggleText.Text = "ESP"
+      ToggleText.TextColor3 = Color3.fromRGB(243, 243, 243)
+      ToggleText.TextSize = 24.000
+      ToggleText.TextXAlignment = Enum.TextXAlignment.Left
+
+      UICorner_2.CornerRadius = UDim.new(0.0199999996, 8)
+      UICorner_2.Parent = ToggleText
+
+      UIPadding_3.Parent = ToggleText
+      UIPadding_3.PaddingLeft = UDim.new(0.100000001, 0)
+      UIPadding_3.PaddingTop = UDim.new(0, -1)
+
+      ToggleButton.Name = "ToggleButton"
+      ToggleButton.Parent = ToggleBorder
+      ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+      ToggleButton.BackgroundTransparency = 1.000
+      ToggleButton.BorderSizePixel = 0
+      ToggleButton.Position = UDim2.new(0.5625, 0, 0, 0)
+      ToggleButton.Size = UDim2.new(0, 43, 0, 50)
+      ToggleButton.Font = Enum.Font.SourceSansBold
+      ToggleButton.Text = ""
+      ToggleButton.TextColor3 = Color3.fromRGB(206, 41, 8)
+      ToggleButton.TextSize = 24.000
+
+      ToggleButton.MouseButton1Click:Connect(function()
+        if toggled == false then
+            ToggleButton.Text = "ON"
+            ToggleButton.TextColor3 = Color3.fromHex("47ce0c")
+            ToggleButton.TextColor = Color3.new(71, 206, 12)
+        else
+          ToggleButton.Text = "OFF"
+          ToggleButton.TextColor3 = Color3.fromHex("ce2908")
+          ToggleButton.TextColor3 = Color3.new(206, 41, 8)
+        end
+        toggled = not toggled
+        pcall(callback, toggled)
+      end)
+
+      
+      for i, v in pairs(WinContainer:GetChildren()) do
+        if i == tonumber(location) then
+          ToggleBorder.Parent = v.TextKeyContainer
+        end
+      end
+
+    end
     return tabFunctions
   end
   return tabHolder
