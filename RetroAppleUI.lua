@@ -273,7 +273,7 @@ function RetroAppleLib:Window()
 
     local UIListLayout = Instance.new("UIListLayout")
     local UIPadding = Instance.new("UIPadding")
-    local TextKeyContainer = Instance.new("Frame") 
+    local TextKeyContainer = Instance.new("ScrollingFrame") 
     
     TextKeyContainer.Name = "TextKeyContainer"
     TextKeyContainer.Parent =  tab
@@ -282,6 +282,7 @@ function RetroAppleLib:Window()
     TextKeyContainer.ClipsDescendants = true
     TextKeyContainer.Position = UDim2.new(0,175,0,20)
     TextKeyContainer.Size = UDim2.new(0, 308, 0, 378)
+    TextKeyContainer.ScrollBarThickness = 0
     TextKeyContainer.ZIndex = 1
 
     UIListLayout.Parent =  TextKeyContainer
