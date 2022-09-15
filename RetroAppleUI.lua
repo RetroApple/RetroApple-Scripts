@@ -82,6 +82,7 @@ function RetroAppleLib:Window(title)
     local CloseButton = Instance.new("TextButton")
     local MinimizeButton = Instance.new("TextButton")
     local SettingsButton = Instance.new("ImageButton")
+    local Containter = Instance.new("Frame")
     local UserWindow = Instance.new("Frame")
     local PlayerName = Instance.new("TextLabel")
     local GameName = Instance.new("TextLabel")
@@ -102,12 +103,12 @@ function RetroAppleLib:Window(title)
     local UIPadding_TabContainer = Instance.new("UIPadding")
     local UIPaddingName = Instance.new("UIPadding")
 
-    WinContainer.Parent = MainFrame
-    TabContainer.Parent = MainFrame
+    WinContainer.Parent = Containter
+    TabContainer.Parent = Containter
     WinContainer.Name = "WinContainer"
     TabContainer.Name = "TabContainer"
 
-    TabContainer.Parent = MainFrame
+    TabContainer.Parent = Containter
     TabContainer.Active = true
     TabContainer.BackgroundColor3 = Color3.fromRGB(36, 37, 47)
     TabContainer.BorderSizePixel = 0
@@ -129,8 +130,17 @@ function RetroAppleLib:Window(title)
     MainFrame.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
     MainFrame.Position = UDim2.new(0.275814891, 0, 0.374562413, 0)
     MainFrame.Size = UDim2.new(0, 798, 0, 398)
+    MainFrame.BackgroundTransparency = 1
 
     Draggable(TopBar, MainFrame)
+
+    Containter.Name = "Containter"
+    Containter.Parent = MainFrame
+    Containter.BackgroundColor3 = Color3.fromRGB(45, 46, 59)
+    Containter.Position = UDim2.new(0, -1, 0, 0)
+    Containter.Size = UDim2.new(0, 798, 0, 398)
+    Containter.ClipsDescendants = true
+    Containter.ZIndex = 1
 
     TopBar.Name = "TopBar"
     TopBar.Parent = MainFrame
@@ -143,6 +153,7 @@ function RetroAppleLib:Window(title)
     TopBar.Text = tostring(title)
     TopBar.TextColor3 = Color3.fromRGB(88, 88, 88)
     TopBar.TextSize = 14.000
+    TopBar.ZIndex = 3
 
     TopBar.TextWrapped =false
 
@@ -150,7 +161,7 @@ function RetroAppleLib:Window(title)
     UIPadding_TopBar.PaddingLeft = UDim.new(0, 8)
 
     UserWindow.Name = "UserWindow"
-    UserWindow.Parent = MainFrame
+    UserWindow.Parent = Containter
     UserWindow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     UserWindow.BackgroundTransparency = 1.000
     UserWindow.BorderSizePixel = 0
@@ -232,7 +243,7 @@ function RetroAppleLib:Window(title)
     CloseButton.Parent = MainFrame
     CloseButton.BackgroundColor3 = Color3.fromRGB(255, 48, 21)
     CloseButton.BorderSizePixel = 0
-    CloseButton.Position = UDim2.new(0.973913014, 0, 0, 0)
+    CloseButton.Position = UDim2.new(0, 775, 0, 0)
     CloseButton.Size = UDim2.new(0, 18, 0, 18)
     CloseButton.Font = Enum.Font.SourceSansBold
     CloseButton.Text = "X"
@@ -241,6 +252,7 @@ function RetroAppleLib:Window(title)
     CloseButton.TextSize = 20.000
     CloseButton.TextStrokeColor3 = Color3.fromRGB(245, 245, 245)
     CloseButton.TextWrapped = true
+    CloseButton.ZIndex = 3
 
     UICorner_CloseButton.CornerRadius = UDim.new(0.300000012, 2)
     UICorner_CloseButton.Parent = CloseButton
@@ -249,7 +261,7 @@ function RetroAppleLib:Window(title)
     MinimizeButton.Parent = MainFrame
     MinimizeButton.BackgroundColor3 = Color3.fromRGB(68, 67, 86)
     MinimizeButton.BorderSizePixel = 0
-    MinimizeButton.Position = UDim2.new(0.939130366, 0, 0, 0)
+    MinimizeButton.Position = UDim2.new(0, 750, 0, 0)
     MinimizeButton.Size = UDim2.new(0, 18, 0, 18)
     MinimizeButton.Font = Enum.Font.SourceSansBold
     MinimizeButton.Text = "-"
@@ -258,12 +270,13 @@ function RetroAppleLib:Window(title)
     MinimizeButton.TextSize = 20.000
     MinimizeButton.TextStrokeColor3 = Color3.fromRGB(245, 245, 245)
     MinimizeButton.TextWrapped = true
+    MinimizeButton.ZIndex = 3
 
     UICorner_MinimizeButton.CornerRadius = UDim.new(0.300000012, 2)
     UICorner_MinimizeButton.Parent = MinimizeButton
 
     SettingsButton.Name = "SettingsButton"
-    SettingsButton.Parent = MainFrame
+    SettingsButton.Parent = Containter
     SettingsButton.BackgroundColor3 = Color3.fromRGB(68, 67, 86)
     SettingsButton.BackgroundTransparency = 1
     SettingsButton.BorderSizePixel = 0
@@ -299,10 +312,79 @@ function RetroAppleLib:Window(title)
     end)
 
     MinimizeButton.MouseButton1Click:Connect(function()
-        if MainFrame.Visible == false then
-        MainFrame.Visible = true
-        else
-        MainFrame.Visible = false
+        local originSize = UDim2.new(0, 798, 0, 398)
+        local newSize = UDim2.new(0, 198, 0, 19.5)
+        local originSize2 = UDim2.new(0, 800, 0, 20)
+        local newSize2 = UDim2.new(0, 200, 0, 20)
+
+        if Containter.Size == originSize then
+            Containter:TweenSize(
+                newSize,
+                "In",
+                "Quad",
+                0.5,
+                false
+            )
+
+            TopBar:TweenSize(
+                newSize2,
+                "In",
+                "Quad",
+                0.5,
+                false
+            )
+
+            CloseButton:TweenPosition(
+                UDim2.new(0,175,0,0),
+                "In",
+                "Quad",
+                0.5,
+                false
+            )
+
+            MinimizeButton:TweenPosition(
+                UDim2.new(0,150,0,0),
+                "In",
+                "Quad",
+                0.5,
+                false
+            )
+            MinimizeButton.Text = "M"
+
+        elseif Containter.Size == newSize then
+            Containter:TweenSize(
+                originSize,
+                "Out",
+                "Quad",
+                0.5,
+                false
+                
+            )
+            TopBar:TweenSize(
+                originSize2,
+                "Out",
+                "Quad",
+                0.5,
+                false
+            )
+
+            CloseButton:TweenPosition(
+                UDim2.new(0, 775, 0, 0),
+                "In",
+                "Quad",
+                0.5,
+                false
+            )
+
+            MinimizeButton:TweenPosition(
+                UDim2.new(0,750,0,0),
+                "In",
+                "Quad",
+                0.5,
+                false
+            )
+
+            MinimizeButton.Text = "-"
         end
     end)
 
@@ -457,15 +539,6 @@ function RetroAppleLib:Window(title)
         ToggleContainer.Size = UDim2.new(0, 185, 0, 378)
         ToggleContainer.CanvasSize = UDim2.new(1, 5, 2, 0)
         ToggleContainer.ScrollBarThickness = 0
-
-        -- ToggleContainer.Parent =  tab
-        -- ToggleContainer.Name = "ToggleContainer"
-        -- ToggleContainer.BackgroundColor3 = Color3.fromRGB(36, 188, 114)
-        -- ToggleContainer.BorderSizePixel = 0
-        -- ToggleContainer.ClipsDescendants = true
-        -- ToggleContainer.Position = UDim2.new(0,362,0,20)
-        -- ToggleContainer.Size = UDim2.new(0, 185, 0, 378)
-        -- ToggleContainer.ZIndex = 1
 
         UIListLayout3.Parent =  ToggleContainer
         UIListLayout3.SortOrder = Enum.SortOrder.LayoutOrder
