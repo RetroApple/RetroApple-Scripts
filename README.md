@@ -12,4 +12,3 @@ local Tab = Window:Tab("Tab1")
 local bind = Tab:Bind("Fly", "1", function() end)
 
 -- These are only the options so far. I will update this script once I make new functions
-``
